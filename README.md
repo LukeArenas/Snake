@@ -44,3 +44,5 @@ A replication of the classic game Snake.
 ***
 
 ### ***Credits***
+
+* [Kosbie.net](https://www.kosbie.net/cmu/fall-10/15-110/handouts/snake/snake.html#:~:text=In%20the%20game%20of%20Snake,as%20possible%20before%20that%20happens.)
