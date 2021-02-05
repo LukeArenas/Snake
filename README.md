@@ -1,6 +1,6 @@
-# HTML & CSS Practice
+# Snake
 
-## Date: 1/26/2021
+## Date: 2/5/2021
 
 ### By: Luke Arenas
 
