@@ -8,7 +8,7 @@
 
 ### ***Description***
 
-A replication of the classic game Snake. 
+A revamped version of the classic game Snake! This game allows a player to use arrow buttons to control a snake's direction of movement. The snake and the player's score grow as the player successfully guides the snake to the randomly generated food. If the player successfully completes the level, the stakes are raised as the snake begins to move faster and the game board shrinks. Hours of fun!
 
 ***
 
@@ -31,15 +31,15 @@ A replication of the classic game Snake.
 
 ### ***Screenshots***
 
-#### Here is my replicated website:
-![houzz replicated website](houzz_replicated_website.PNG)
+#### Here are screenshots from the game:
+
 
 ***
 
 ### ***Future Updates***
 
-- [ ] Add live links to the nav bar options.
-- [ ] Add additional pictures (i.e. shopping cart, company logo) and properly align these in the nav bar.
+- [ ] 
+- [ ] 
 
 ***
 
