@@ -4,7 +4,7 @@
 
 ### By: Luke Arenas
 
-#### [Website](https://lukearenas.github.io/Personal-Website/) | [GitHub](https://github.com/LukeArenas) | [LinkedIn](https://www.linkedin.com/in/lukearenas/)
+#### [Website](https://lukearenas.github.io/Personal-Website/) | [GitHub](https://github.com/LukeArenas) | [LinkedIn](https://www.linkedin.com/in/lukearenas/) | [Trello](https://trello.com/b/VDEvoalZ/snake)
 
 ### ***Description***
 
