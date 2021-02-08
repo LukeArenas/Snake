@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+}
+
+main {
+  display: grid;
+  margin: 0 10vw 0 10vw;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 25% 25% 25% 25%;
+}
+
+.board {
+  background-color: darkorchid;
+  height: 25vh;
+  border: 1px solid black;
+}

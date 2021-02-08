@@ -3,6 +3,7 @@ console.log('hello')
 const playButton = document.querySelector('#play-button')
 const main = document.querySelector('main')
 
+//FUNCTIONS
 const createBoard = () => {
   for (let i = 0; i < 16; i++) {
     let newCell = document.createElement('div')
