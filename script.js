@@ -7,9 +7,13 @@ const rightButton = document.querySelector('#right-button')
 const leftButton = document.querySelector('#left-button')
 
 const main = document.querySelector('main')
-let gameDirection = 'right'
-let currentCellID = 0
+let gameDirection = 'Right'
+let firstCellID = 1
+let lastCellID = 0
 let interval
+let score = 0
+let currentSnake = [0, 1]
+let shouldSnakeGrow
 
 //FUNCTIONS
 // const createBoard = () => {
@@ -23,8 +27,12 @@ let interval
 // }
 
 const beginGame = () => {
-  const firstPosition = document.querySelector('#cell0')
-  firstPosition.setAttribute('class', 'snake')
+  for (let i = 0; i < currentSnake.length; i++) {
+    const firstPosition = document.querySelector(`#cell${currentSnake[i]}`)
+    firstPosition.setAttribute('class', 'snake')
+  }
+
+  generateFood()
   interval = window.setInterval(stepRight, 1500)
 }
 
@@ -53,16 +61,27 @@ const travelLeft = () => {
 //STEP FUNCTIONS
 
 const stepRight = () => {
-  let step = currentCellID + 1
-  const nextDiv = document.querySelector(`#cell${step}`) //get div
-  const nextCellID = nextDiv.getAttribute('id') //get id
-  const nextID = parseInt(nextCellID.replace('cell', '')) //parseint id
-  const nextCell = document.querySelector(`#cell${nextID}`) //assign next cell
-  nextCell.setAttribute('class', 'snake')
-
-  const currentCell = document.querySelector(`#cell${currentCellID}`) //reset cell moved from
-  currentCell.setAttribute('class', 'board') //reset the class
-  currentCellID = step //reassign currentCell for next iteration
+  for (let i = 0; i < currentSnake.length; i++) {
+    let step = parseInt(currentSnake[i]) + 1
+    const nextDiv = document.querySelector(`#cell${step}`) //get div
+    const nextCellID = nextDiv.getAttribute('id') //get id
+    const nextCellClass = nextDiv.getAttribute('class') //get class
+    checkForFood(nextCellClass) //check for food
+    const nextID = parseInt(nextCellID.replace('cell', '')) //parseint id
+    const nextCell = document.querySelector(`#cell${nextID}`) //assign next cell
+    nextCell.setAttribute('class', 'snake')
+    currentSnake[i] = step
+  }
+  if (shouldSnakeGrow) {
+    currentSnake.unshift(lastCellID)
+    lastCellID--
+    shouldSnakeGrow = false
+  }
+  const lastCell = document.querySelector(`#cell${lastCellID}`) //reset cell moved from
+  lastCell.setAttribute('class', 'board') //reset the class
+  firstCellID++ //reassign currentCell for next iteration
+  lastCellID++
+  console.log(currentSnake)
 }
 
 const stepDown = () => {
@@ -79,32 +98,32 @@ const stepDown = () => {
 }
 
 const stepUp = () => {
-  let step = currentCellID - 4
+  let step = firstCellID - 4
   const nextDiv = document.querySelector(`#cell${step}`)
   const nextCellID = nextDiv.getAttribute('id')
   const nextID = parseInt(nextCellID.replace('cell', ''))
   const nextCell = document.querySelector(`#cell${nextID}`)
   nextCell.setAttribute('class', 'snake')
 
-  const currentCell = document.querySelector(`#cell${currentCellID}`)
+  const currentCell = document.querySelector(`#cell${firstCellID}`)
   currentCell.setAttribute('class', 'board')
-  currentCellID = step
+  firstCellID = step
 }
 
 const stepLeft = () => {
-  let step = currentCellID - 1
+  let step = firstCellID - 1
   const nextDiv = document.querySelector(`#cell${step}`)
   const nextCellID = nextDiv.getAttribute('id')
   const nextID = parseInt(nextCellID.replace('cell', ''))
   const nextCell = document.querySelector(`#cell${nextID}`)
   nextCell.setAttribute('class', 'snake')
 
-  const currentCell = document.querySelector(`#cell${currentCellID}`)
+  const currentCell = document.querySelector(`#cell${firstCellID}`)
   currentCell.setAttribute('class', 'board')
-  currentCellID = step
+  firstCellID = step
 }
 
-//FOOD GENERATOR FUNCTION
+//FOOD FUNCTIONS
 
 const generateFood = () => {
   const cellID = Math.floor(Math.random() * 16)
@@ -113,6 +132,17 @@ const generateFood = () => {
     foodCell.setAttribute('class', 'food')
   } else {
     generateFood()
+  }
+}
+
+const checkForFood = (cellClass) => {
+  if (cellClass === 'food') {
+    score++
+    let newScore = document.querySelector('#score')
+    newScore.innerText = `Score: ${score}` //adjust score accordingly
+
+    generateFood()
+    shouldSnakeGrow = true
   }
 }
 
