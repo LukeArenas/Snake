@@ -46,6 +46,12 @@ const travelRight = () => {
   interval = window.setInterval(stepRight, 1500)
 }
 
+const travelLeft = () => {
+  clearInterval(interval)
+  stepLeft()
+  interval = window.setInterval(stepLeft, 1500)
+}
+
 //STEP FUNCTIONS
 
 const stepRight = () => {
@@ -87,9 +93,23 @@ const stepUp = () => {
   currentCellID = step
 }
 
+const stepLeft = () => {
+  let step = currentCellID - 1
+  const nextDiv = document.querySelector(`#cell${step}`)
+  const nextCellID = nextDiv.getAttribute('id')
+  const nextID = parseInt(nextCellID.replace('cell', ''))
+  const nextCell = document.querySelector(`#cell${nextID}`)
+  nextCell.setAttribute('class', 'snake')
+
+  const currentCell = document.querySelector(`#cell${currentCellID}`)
+  currentCell.setAttribute('class', 'board')
+  currentCellID = step
+}
+
 //EVENT LISTENERS
 
 playButton.addEventListener('click', beginGame)
 downButton.addEventListener('click', travelDown)
 upButton.addEventListener('click', travelUp)
 rightButton.addEventListener('click', travelRight)
+leftButton.addEventListener('click', travelLeft)
