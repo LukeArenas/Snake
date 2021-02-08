@@ -6,6 +6,7 @@ const downButton = document.querySelector('#down-button')
 const main = document.querySelector('main')
 let gameDirection = 'right'
 let currentCellID = 0
+let interval
 
 //FUNCTIONS
 // const createBoard = () => {
@@ -21,10 +22,11 @@ let currentCellID = 0
 const beginGame = () => {
   const firstPosition = document.querySelector('#cell0')
   firstPosition.setAttribute('class', 'snake')
-  window.setInterval(stepRight, 1500)
+  interval = window.setInterval(stepRight, 1500)
 }
 
 const travelDown = () => {
+  clearInterval(interval)
   stepDown()
   window.setInterval(stepDown, 1500)
 }
