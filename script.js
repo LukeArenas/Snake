@@ -2,6 +2,7 @@ console.log('hello')
 //GLOBAL VARIABLES
 const playButton = document.querySelector('#play-button')
 const downButton = document.querySelector('#down-button')
+const upButton = document.querySelector('#up-button')
 
 const main = document.querySelector('main')
 let gameDirection = 'right'
@@ -28,8 +29,16 @@ const beginGame = () => {
 const travelDown = () => {
   clearInterval(interval)
   stepDown()
-  window.setInterval(stepDown, 1500)
+  interval = window.setInterval(stepDown, 1500)
 }
+
+const travelUp = () => {
+  clearInterval(interval)
+  stepUp()
+  interval = window.setInterval(stepUp, 1500)
+}
+
+//STEP FUNCTIONS
 
 const stepRight = () => {
   let step = currentCellID + 1
@@ -57,7 +66,21 @@ const stepDown = () => {
   currentCellID = step
 }
 
+const stepUp = () => {
+  let step = currentCellID - 4
+  const nextDiv = document.querySelector(`#cell${step}`)
+  const nextCellID = nextDiv.getAttribute('id')
+  const nextID = parseInt(nextCellID.replace('cell', ''))
+  const nextCell = document.querySelector(`#cell${nextID}`)
+  nextCell.setAttribute('class', 'snake')
+
+  const currentCell = document.querySelector(`#cell${currentCellID}`)
+  currentCell.setAttribute('class', 'board')
+  currentCellID = step
+}
+
 //EVENT LISTENERS
 
 playButton.addEventListener('click', beginGame)
 downButton.addEventListener('click', travelDown)
+upButton.addEventListener('click', travelUp)
