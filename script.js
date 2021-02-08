@@ -85,20 +85,52 @@ const stepRight = () => {
 }
 
 const stepDown = () => {
-  let step = currentCellID + 4
+  let step = firstCellID + 8
   const nextDiv = document.querySelector(`#cell${step}`)
   const nextCellID = nextDiv.getAttribute('id')
   const nextID = parseInt(nextCellID.replace('cell', ''))
   const nextCell = document.querySelector(`#cell${nextID}`)
   nextCell.setAttribute('class', 'snake')
+  let newSnakeHead = currentSnake.pop() + 8
+  currentSnake.push(newSnakeHead)
 
-  const currentCell = document.querySelector(`#cell${currentCellID}`)
+  const currentCell = document.querySelector(`#cell${lastCellID}`)
   currentCell.setAttribute('class', 'board')
-  currentCellID = step
+
+  for (let i = 0; i < currentSnake.length - 1; i++) {
+    let bodyStep = parseInt(currentSnake[i]) + 1
+    if (firstCellID === bodyStep) {
+      //will execute if body pieces need to continue right
+      const nextDiv = document.querySelector(`#cell${bodyStep}`) //get div
+      const nextCellID = nextDiv.getAttribute('id') //get id
+      const nextCellClass = nextDiv.getAttribute('class') //get class
+      const nextID = parseInt(nextCellID.replace('cell', '')) //parseint id
+      const nextCell = document.querySelector(`#cell${nextID}`) //select next cell
+      nextCell.setAttribute('class', 'snake')
+      currentSnake[i] = bodyStep
+      lastCellID++
+    } else {
+      //will execute if body need to move down
+      bodyStep = parseInt(currentSnake[i] + 8)
+      const nextDiv = document.querySelector(`#cell${bodyStep}`) //get div
+      const nextCellID = nextDiv.getAttribute('id') //get id
+      const nextCellClass = nextDiv.getAttribute('class') //get class
+      const nextID = parseInt(nextCellID.replace('cell', '')) //parseint id
+      const nextCell = document.querySelector(`#cell${nextID}`) //select next cell
+      nextCell.setAttribute('class', 'snake')
+      currentSnake[i] = bodyStep
+
+      const currentCell = document.querySelector(`#cell${lastCellID}`)
+      currentCell.setAttribute('class', 'board')
+      lastCellID = lastCellID + 8
+    }
+  }
+  console.log(currentSnake)
+  firstCellID = step
 }
 
 const stepUp = () => {
-  let step = firstCellID - 4
+  let step = firstCellID - 8
   const nextDiv = document.querySelector(`#cell${step}`)
   const nextCellID = nextDiv.getAttribute('id')
   const nextID = parseInt(nextCellID.replace('cell', ''))

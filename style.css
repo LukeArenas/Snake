@@ -5,8 +5,8 @@ body {
 main {
   display: grid;
   margin: 0 10vw 0 10vw;
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 25% 25% 25% 25%;
+  grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+  grid-template-rows: 12.5vh 12.5vh 12.5vh 12.5vh 12.5vh 12.5vh 12.5vh 12.5vh;
 }
 
 .board {
@@ -17,8 +17,10 @@ main {
 
 .food {
   background-color: red;
+  border: 1px solid black;
 }
 
 .snake {
   background-color: green;
+  border: 1px solid black;
 }
