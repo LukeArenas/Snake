@@ -20,11 +20,7 @@ let currentCellID = 0
 const beginGame = () => {
   const firstPosition = document.querySelector('#cell0')
   firstPosition.setAttribute('class', 'snake')
-  for (i = 0; i < 4; i++) {
-    if (gameDirection === 'right') {
-      window.setTimeout(moveRight, 2000)
-    }
-  }
+  window.setInterval(moveRight, 2000)
 }
 
 const moveRight = () => {
