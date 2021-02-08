@@ -14,3 +14,11 @@ main {
   height: 25vh;
   border: 1px solid black;
 }
+
+.food {
+  background-color: red;
+}
+
+.snake {
+  background-color: green;
+}

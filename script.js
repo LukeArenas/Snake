@@ -28,27 +28,25 @@ const beginGame = () => {
   interval = window.setInterval(stepRight, 1500)
 }
 
+//TRAVEL (INTERVAL) FUNCTIONS
+
 const travelDown = () => {
-  clearInterval(interval)
-  stepDown()
+  clearInterval(interval) //clear interval so direction of movement doesn't 'stack'
   interval = window.setInterval(stepDown, 1500)
 }
 
 const travelUp = () => {
   clearInterval(interval)
-  stepUp()
   interval = window.setInterval(stepUp, 1500)
 }
 
 const travelRight = () => {
   clearInterval(interval)
-  stepRight()
   interval = window.setInterval(stepRight, 1500)
 }
 
 const travelLeft = () => {
   clearInterval(interval)
-  stepLeft()
   interval = window.setInterval(stepLeft, 1500)
 }
 
@@ -63,8 +61,8 @@ const stepRight = () => {
   nextCell.setAttribute('class', 'snake')
 
   const currentCell = document.querySelector(`#cell${currentCellID}`) //reset cell moved from
-  currentCell.setAttribute('class', 'board')
-  currentCellID = step
+  currentCell.setAttribute('class', 'board') //reset the class
+  currentCellID = step //reassign currentCell for next iteration
 }
 
 const stepDown = () => {
@@ -104,6 +102,18 @@ const stepLeft = () => {
   const currentCell = document.querySelector(`#cell${currentCellID}`)
   currentCell.setAttribute('class', 'board')
   currentCellID = step
+}
+
+//FOOD GENERATOR FUNCTION
+
+const generateFood = () => {
+  const cellID = Math.floor(Math.random() * 16)
+  const foodCell = document.querySelector(`#cell${cellID}`)
+  if (foodCell.getAttribute('class') === 'board') {
+    foodCell.setAttribute('class', 'food')
+  } else {
+    generateFood()
+  }
 }
 
 //EVENT LISTENERS
