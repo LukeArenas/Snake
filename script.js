@@ -1,7 +1,8 @@
 console.log('hello')
 //GLOBAL VARIABLES
 const playButton = document.querySelector('#play-button')
-const stopButton = document.querySelector('#stop-button')
+const downButton = document.querySelector('#down-button')
+
 const main = document.querySelector('main')
 let gameDirection = 'right'
 let currentCellID = 0
@@ -20,20 +21,41 @@ let currentCellID = 0
 const beginGame = () => {
   const firstPosition = document.querySelector('#cell0')
   firstPosition.setAttribute('class', 'snake')
-  window.setInterval(moveRight, 2000)
+  window.setInterval(stepRight, 1500)
 }
 
-const moveRight = () => {
+const travelDown = () => {
+  stepDown()
+  window.setInterval(stepDown, 1500)
+}
+
+const stepRight = () => {
   let step = currentCellID + 1
-  const nextDiv = document.querySelector(`#cell${currentCellID}`) //get div
+  const nextDiv = document.querySelector(`#cell${step}`) //get div
   const nextCellID = nextDiv.getAttribute('id') //get id
   const nextID = parseInt(nextCellID.replace('cell', '')) //parseint id
   const nextCell = document.querySelector(`#cell${nextID}`) //assign next cell
-  console.log(nextCell)
   nextCell.setAttribute('class', 'snake')
+
+  const currentCell = document.querySelector(`#cell${currentCellID}`) //reset cell moved from
+  currentCell.setAttribute('class', 'board')
+  currentCellID = step
+}
+
+const stepDown = () => {
+  let step = currentCellID + 4
+  const nextDiv = document.querySelector(`#cell${step}`)
+  const nextCellID = nextDiv.getAttribute('id')
+  const nextID = parseInt(nextCellID.replace('cell', ''))
+  const nextCell = document.querySelector(`#cell${nextID}`)
+  nextCell.setAttribute('class', 'snake')
+
+  const currentCell = document.querySelector(`#cell${currentCellID}`)
+  currentCell.setAttribute('class', 'board')
   currentCellID = step
 }
 
 //EVENT LISTENERS
 
 playButton.addEventListener('click', beginGame)
+downButton.addEventListener('click', travelDown)
