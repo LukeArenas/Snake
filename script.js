@@ -3,6 +3,8 @@ console.log('hello')
 const playButton = document.querySelector('#play-button')
 const downButton = document.querySelector('#down-button')
 const upButton = document.querySelector('#up-button')
+const rightButton = document.querySelector('#right-button')
+const leftButton = document.querySelector('#left-button')
 
 const main = document.querySelector('main')
 let gameDirection = 'right'
@@ -36,6 +38,12 @@ const travelUp = () => {
   clearInterval(interval)
   stepUp()
   interval = window.setInterval(stepUp, 1500)
+}
+
+const travelRight = () => {
+  clearInterval(interval)
+  stepRight()
+  interval = window.setInterval(stepRight, 1500)
 }
 
 //STEP FUNCTIONS
@@ -84,3 +92,4 @@ const stepUp = () => {
 playButton.addEventListener('click', beginGame)
 downButton.addEventListener('click', travelDown)
 upButton.addEventListener('click', travelUp)
+rightButton.addEventListener('click', travelRight)
