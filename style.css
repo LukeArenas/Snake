@@ -15,6 +15,9 @@ main {
 
 h1 {
   color: #04080f;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 100px;
+  margin-bottom: 0;
 }
 
 .buttons {
@@ -40,7 +43,9 @@ h1 {
 
 #score,
 #high-score {
-  display: inline;
+  display: inline-flexbox;
+  font-size: 40px;
+  font-family: 'Orbitron', sans-serif;
 }
 
 #play-button {
@@ -58,4 +63,12 @@ h1 {
 
 #play-button:hover {
   box-shadow: 5px 5px 15px #ed254e;
+}
+
+#s {
+  color: #c4ffb2;
+}
+
+#a {
+  color: #ed254e;
 }
