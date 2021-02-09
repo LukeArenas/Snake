@@ -68,17 +68,22 @@ const stepRight = () => {
     const nextCellID = nextDiv.getAttribute('id') //get id
     const nextCellClass = nextDiv.getAttribute('class') //get class
     checkForFood(nextCellClass) //check for food
+    if (shouldSnakeGrow) {
+      currentSnake.push({
+        posY: currentSnake[i].posY,
+        posX: currentSnake[i].posX - 1
+      })
+      console.log(currentSnake)
+      lastCellID--
+      shouldSnakeGrow = false
+    }
     const nextID = parseInt(nextCellID.replace('cell', '')) //parseint id
     const nextCell = document.querySelector(`#cell${nextID}`) //assign next cell
     nextCell.setAttribute('class', 'snake')
     currentSnake[i].posX = step
     console.log(currentSnake[0].posY, currentSnake[0].posX)
   }
-  if (shouldSnakeGrow) {
-    currentSnake.push({ posY: head.posY, posX: head.posX + 1 })
-    lastCellID--
-    shouldSnakeGrow = false
-  }
+
   const lastCell = document.querySelector(`#cell${lastCellID}`) //reset cell moved from
   lastCell.setAttribute('class', 'board') //reset the class
   firstCellID++ //reassign currentCell for next iteration
@@ -173,7 +178,7 @@ const stepLeft = () => {
 //FOOD FUNCTIONS
 
 const generateFood = () => {
-  const cellID = Math.floor(Math.random() * 8)
+  const cellID = Math.floor(Math.random() * 16)
   const foodCell = document.querySelector(`#cell${cellID}`)
   if (foodCell.getAttribute('class') === 'board') {
     foodCell.setAttribute('class', 'food')
