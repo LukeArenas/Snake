@@ -1,10 +1,6 @@
 console.log('hello')
 //GLOBAL VARIABLES
 const playButton = document.querySelector('#play-button')
-const downButton = document.querySelector('#down-button')
-const upButton = document.querySelector('#up-button')
-const rightButton = document.querySelector('#right-button')
-const leftButton = document.querySelector('#left-button')
 
 const main = document.querySelector('main')
 let gameDirection = 'Right'
@@ -26,9 +22,17 @@ const createBoard = () => {
   }
 }
 
+const clearBoard = () => {
+  for (let i = 0; i < 64; i++) {
+    let currentCell = document.querySelector(`#cell${i}`)
+    currentCell.setAttribute('class', 'board')
+  }
+}
+
 //BEGIN GAME FUNCTION
 
 const beginGame = () => {
+  clearBoard()
   for (let i = 0; i < currentSnake.length; i++) {
     const firstPosition = document.querySelector(`#cell${currentSnake[i].posX}`)
     firstPosition.setAttribute('class', 'snake')
@@ -163,9 +167,11 @@ const stepLeft = () => {
 
 const checkForDeath = (nextCellClass) => {
   if (nextCellClass === 'snake') {
+    head = { posY: 0, posX: 2 }
+    currentSnake = [head, { posY: 0, posX: 1 }, { posY: 0, posX: 0 }]
     alert('you have died')
     clearInterval(interval)
-    beginGame()
+    clearBoard()
   }
 }
 
@@ -196,10 +202,6 @@ const checkForFood = (cellClass) => {
       posX: currentSnake[currentSnake.length - 1].posX - 1
     })
     shouldSnakeGrow = false
-    console.log(
-      currentSnake[currentSnake.length - 1].posX,
-      currentSnake[currentSnake.length - 1].posY
-    )
   }
 }
 
