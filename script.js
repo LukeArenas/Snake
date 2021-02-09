@@ -8,8 +8,6 @@ const leftButton = document.querySelector('#left-button')
 
 const main = document.querySelector('main')
 let gameDirection = 'Right'
-let firstCellID = 1
-let lastCellID = 0
 let interval
 let score = 0
 let head = { posY: 0, posX: 2 }
@@ -61,28 +59,6 @@ const travelLeft = () => {
 
 //STEP FUNCTIONS
 
-// const stepRight = () => {
-//   for (let i = 0; i < currentSnake.length; i++) {
-//     let step = currentSnake[i].posX + 1
-//     const nextDiv = document.querySelector(`#cell${step}`) //get div
-//     const nextCellID = nextDiv.getAttribute('id') //get id
-//     const nextCellClass = nextDiv.getAttribute('class') //get class
-//     checkForFood(nextCellClass) //check for food
-
-//     const nextID = parseInt(nextCellID.replace('cell', '')) //parseint id
-//     const nextCell = document.querySelector(`#cell${nextID}`) //assign next cell
-//     nextCell.setAttribute('class', 'snake')
-//     currentSnake[i].posX = step
-//     // console.log(currentSnake[0].posY, currentSnake[0].posX)
-//   }
-
-//   const lastCell = document.querySelector(`#cell${lastCellID}`) //reset cell moved from
-//   lastCell.setAttribute('class', 'board') //reset the class
-//   firstCellID++ //reassign currentCell for next iteration
-//   lastCellID++
-//   console.log(currentSnake[1].posX, currentSnake[1].posY)
-// }
-
 const moveBodyPieces = () => {
   for (let i = currentSnake.length - 1; i > 0; i--) {
     if (i === currentSnake.length - 1) {
@@ -107,6 +83,7 @@ const stepRight = () => {
   head = { posY: head.posY, posX: head.posX + 1 }
   let oldHead = currentSnake.shift()
   currentSnake.unshift(head)
+
   let step = head.posY + head.posX
   const nextDiv = document.querySelector(`#cell${step}`)
   const nextCellID = nextDiv.getAttribute('id')
@@ -166,101 +143,6 @@ const stepLeft = () => {
   const nextCell = document.querySelector(`#cell${nextID}`)
   nextCell.setAttribute('class', 'snake')
 }
-
-// const stepDown = () => {
-//   let turningPoint = { posY: head.posY, posX: head.posX }
-//   head = { posY: head.posY + 8, posX: head.posX }
-//   currentSnake.unshift(head)
-//   currentSnake.pop()
-//   console.log(turningPoint)
-
-//   for (let i = 1; i < currentSnake.length; i++) {
-//     let step = currentSnake[0].posY + currentSnake[0].posX
-//     const nextDiv = document.querySelector(`#cell${step}`)
-//     const nextCellID = nextDiv.getAttribute('id')
-//     const nextCellClass = nextDiv.getAttribute('class')
-//     checkForFood(nextCellClass)
-//     const nextID = parseInt(nextCellID.replace('cell', ''))
-//     const nextCell = document.querySelector(`#cell${nextID}`)
-//     nextCell.setAttribute('class', 'snake')
-//     if (currentSnake[i].posX <= turningPoint) {
-//       console.log('this is reachable')
-//     }
-
-//     // lastCellID = step
-
-//     let currentCell = document.querySelector(`#cell${lastCellID}`)
-//     currentCell.setAttribute('class', 'board')
-//     lastCellID = lastCellID + 8
-//   }
-// }
-
-// const stepDown = () => {
-//   let step = firstCellID + 8
-//   const nextDiv = document.querySelector(`#cell${step}`)
-//   const nextCellID = nextDiv.getAttribute('id')
-//   const nextCellClass = nextDiv.getAttribute('class')
-//   checkForFood(nextCellClass)
-//   const nextID = parseInt(nextCellID.replace('cell', ''))
-//   const nextCell = document.querySelector(`#cell${nextID}`)
-//   nextCell.setAttribute('class', 'snake')
-//   let newSnakeHead = currentSnake.pop() + 8
-//   currentSnake.push(newSnakeHead)
-
-//   let currentCell = document.querySelector(`#cell${lastCellID}`)
-//   currentCell.setAttribute('class', 'board')
-
-//   for (let i = 0; i < currentSnake.length - 1; i++) {
-//     let bodyStep = parseInt(currentSnake[i]) + 1
-//     if (firstCellID === bodyStep) {
-//       currentCell = document.querySelector(`#cell${lastCellID}`)
-//       currentCell.setAttribute('class', 'board')
-
-//       currentSnake[i] = bodyStep
-//       lastCellID++
-//     } else if (bodyStep + 8 === firstCellID) {
-//       //will execute if body need to move down
-//       bodyStep = parseInt(currentSnake[i] + 8)
-//       console.log('this code is reachable')
-//       currentSnake[i] = bodyStep
-
-//       currentCell = document.querySelector(`#cell${lastCellID}`)
-//       currentCell.setAttribute('class', 'board')
-//       lastCellID = lastCellID + 8
-//     }
-//   }
-//   // currentCell = document.querySelector(`#cell${lastCellID}`)
-//   // currentCell.setAttribute('class', 'board')
-
-//   console.log(currentSnake)
-//   firstCellID = step
-// }
-
-// const stepUp = () => {
-//   let step = firstCellID - 8
-//   const nextDiv = document.querySelector(`#cell${step}`)
-//   const nextCellID = nextDiv.getAttribute('id')
-//   const nextID = parseInt(nextCellID.replace('cell', ''))
-//   const nextCell = document.querySelector(`#cell${nextID}`)
-//   nextCell.setAttribute('class', 'snake')
-
-//   const currentCell = document.querySelector(`#cell${firstCellID}`)
-//   currentCell.setAttribute('class', 'board')
-//   firstCellID = step
-// }
-
-// const stepLeft = () => {
-//   let step = firstCellID - 1
-//   const nextDiv = document.querySelector(`#cell${step}`)
-//   const nextCellID = nextDiv.getAttribute('id')
-//   const nextID = parseInt(nextCellID.replace('cell', ''))
-//   const nextCell = document.querySelector(`#cell${nextID}`)
-//   nextCell.setAttribute('class', 'snake')
-
-//   const currentCell = document.querySelector(`#cell${firstCellID}`)
-//   currentCell.setAttribute('class', 'board')
-//   firstCellID = step
-// }
 
 //FOOD FUNCTIONS
 
