@@ -41,22 +41,22 @@ const beginGame = () => {
 
 const travelDown = () => {
   clearInterval(interval) //clear interval so direction of movement doesn't 'stack'
-  interval = window.setInterval(stepDown, 1500)
+  interval = window.setInterval(stepDown, 1000)
 }
 
 const travelUp = () => {
   clearInterval(interval)
-  interval = window.setInterval(stepUp, 1500)
+  interval = window.setInterval(stepUp, 1000)
 }
 
 const travelRight = () => {
   clearInterval(interval)
-  interval = window.setInterval(stepRight, 1500)
+  interval = window.setInterval(stepRight, 1000)
 }
 
 const travelLeft = () => {
   clearInterval(interval)
-  interval = window.setInterval(stepLeft, 1500)
+  interval = window.setInterval(stepLeft, 1000)
 }
 
 //STEP FUNCTIONS
@@ -73,7 +73,7 @@ const stepRight = () => {
         posY: currentSnake[i].posY,
         posX: currentSnake[i].posX - 1
       })
-      console.log(currentSnake)
+
       lastCellID--
       shouldSnakeGrow = false
     }
@@ -91,21 +91,31 @@ const stepRight = () => {
 }
 
 const stepDown = () => {
+  let turningPoint = { posY: head.posY, posX: head.posX }
   head = { posY: head.posY + 8, posX: head.posX }
   currentSnake.unshift(head)
-  let step = currentSnake[0].posY + currentSnake[0].posX
-  console.log(step)
-  const nextDiv = document.querySelector(`#cell${step}`)
-  const nextCellID = nextDiv.getAttribute('id')
-  const nextCellClass = nextDiv.getAttribute('class')
-  checkForFood(nextCellClass)
-  const nextID = parseInt(nextCellID.replace('cell', ''))
-  const nextCell = document.querySelector(`#cell${nextID}`)
-  nextCell.setAttribute('class', 'snake')
+  currentSnake.pop()
+  console.log(turningPoint)
 
-  let currentCell = document.querySelector(`#cell${lastCellID}`)
-  currentCell.setAttribute('class', 'board')
-  lastCellID = lastCellID + 8
+  for (let i = 1; i < currentSnake.length; i++) {
+    let step = currentSnake[0].posY + currentSnake[0].posX
+    const nextDiv = document.querySelector(`#cell${step}`)
+    const nextCellID = nextDiv.getAttribute('id')
+    const nextCellClass = nextDiv.getAttribute('class')
+    checkForFood(nextCellClass)
+    const nextID = parseInt(nextCellID.replace('cell', ''))
+    const nextCell = document.querySelector(`#cell${nextID}`)
+    nextCell.setAttribute('class', 'snake')
+    if (currentSnake[i].posX <= turningPoint) {
+      console.log('this is reachable')
+    }
+
+    // lastCellID = step
+
+    let currentCell = document.querySelector(`#cell${lastCellID}`)
+    currentCell.setAttribute('class', 'board')
+    lastCellID = lastCellID + 8
+  }
 }
 
 // const stepDown = () => {
@@ -178,7 +188,7 @@ const stepLeft = () => {
 //FOOD FUNCTIONS
 
 const generateFood = () => {
-  const cellID = Math.floor(Math.random() * 16)
+  const cellID = Math.floor(Math.random() * 8)
   const foodCell = document.querySelector(`#cell${cellID}`)
   if (foodCell.getAttribute('class') === 'board') {
     foodCell.setAttribute('class', 'food')
