@@ -57,7 +57,7 @@ const travelLeft = () => {
   interval = window.setInterval(stepLeft, 1000)
 }
 
-//STEP FUNCTIONS
+// MOVE BODY PIECES FUNCTION
 
 const moveBodyPieces = () => {
   for (let i = currentSnake.length - 1; i > 0; i--) {
@@ -78,17 +78,22 @@ const moveBodyPieces = () => {
   }
 }
 
+// STEP (MOVE HEAD) FUNCTIONS
+
 const stepRight = () => {
+  //adjust currentSnake array
   moveBodyPieces()
   head = { posY: head.posY, posX: head.posX + 1 }
   let oldHead = currentSnake.shift()
   currentSnake.unshift(head)
 
+  //adjust cell class for visual purposes
   let step = head.posY + head.posX
   const nextDiv = document.querySelector(`#cell${step}`)
   const nextCellID = nextDiv.getAttribute('id')
   const nextCellClass = nextDiv.getAttribute('class')
   checkForFood(nextCellClass)
+  checkForDeath(nextCellClass)
   const nextID = parseInt(nextCellID.replace('cell', ''))
   const nextCell = document.querySelector(`#cell${nextID}`)
   nextCell.setAttribute('class', 'snake')
@@ -107,41 +112,57 @@ const stepDown = () => {
   const nextCellID = nextDiv.getAttribute('id')
   const nextCellClass = nextDiv.getAttribute('class')
   checkForFood(nextCellClass)
+  checkForDeath(nextCellClass)
   const nextID = parseInt(nextCellID.replace('cell', ''))
   const nextCell = document.querySelector(`#cell${nextID}`)
   nextCell.setAttribute('class', 'snake')
 }
 
 const stepUp = () => {
+  //adjust currentSnake array
   moveBodyPieces()
   head = { posY: head.posY - 8, posX: head.posX }
   let oldHead = currentSnake.shift()
   currentSnake.unshift(head)
 
+  //adjust cell class for visual purposes
   let step = head.posY + head.posX
   const nextDiv = document.querySelector(`#cell${step}`)
   const nextCellID = nextDiv.getAttribute('id')
   const nextCellClass = nextDiv.getAttribute('class')
   checkForFood(nextCellClass)
+  checkForDeath(nextCellClass)
   const nextID = parseInt(nextCellID.replace('cell', ''))
   const nextCell = document.querySelector(`#cell${nextID}`)
   nextCell.setAttribute('class', 'snake')
 }
 
 const stepLeft = () => {
+  //adjust currentSnake array
   moveBodyPieces()
   head = { posY: head.posY, posX: head.posX - 1 }
   let oldHead = currentSnake.shift()
   currentSnake.unshift(head)
 
+  //adjust cell class for visual purposes
   let step = head.posY + head.posX
   const nextDiv = document.querySelector(`#cell${step}`)
   const nextCellID = nextDiv.getAttribute('id')
   const nextCellClass = nextDiv.getAttribute('class')
   checkForFood(nextCellClass)
+  checkForDeath(nextCellClass)
   const nextID = parseInt(nextCellID.replace('cell', ''))
   const nextCell = document.querySelector(`#cell${nextID}`)
   nextCell.setAttribute('class', 'snake')
+}
+
+//DIE FUNCTIONS
+
+const checkForDeath = (nextCellClass) => {
+  if (nextCellClass === 'snake') {
+    alert('you have died')
+    interval = null
+  }
 }
 
 //FOOD FUNCTIONS
