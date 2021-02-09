@@ -201,8 +201,19 @@ const checkForFood = (cellClass) => {
 
 //EVENT LISTENERS
 
+const logKey = (event) => {
+  const keyPressed = event.key
+  if (keyPressed === 's') {
+    travelDown()
+  } else if (keyPressed === 'w') {
+    travelUp()
+  } else if (keyPressed === 'd') {
+    travelRight()
+  } else if (keyPressed === 'a') {
+    travelLeft()
+  }
+}
+
 playButton.addEventListener('click', beginGame)
-downButton.addEventListener('click', travelDown)
-upButton.addEventListener('click', travelUp)
-rightButton.addEventListener('click', travelRight)
-leftButton.addEventListener('click', travelLeft)
+
+document.addEventListener('keypress', logKey)
