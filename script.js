@@ -6,6 +6,7 @@ const main = document.querySelector('main')
 let gameDirection = 'Right'
 let interval
 let score = 0
+let highScore = 0
 let head = { posY: 0, posX: 2 }
 let currentSnake = [head, { posY: 0, posX: 1 }, { posY: 0, posX: 0 }]
 let shouldSnakeGrow
@@ -168,6 +169,9 @@ const checkForDeath = (nextCellClass) => {
   if (nextCellClass === 'snake') {
     head = { posY: 0, posX: 2 }
     currentSnake = [head, { posY: 0, posX: 1 }, { posY: 0, posX: 0 }]
+    score = 0
+    let resetScore = document.querySelector('#score')
+    resetScore.innerText = `Score: ${score}`
     alert('you have died')
     clearInterval(interval)
     setTimeout(clearBoard, 1)
@@ -191,6 +195,11 @@ const checkForFood = (cellClass) => {
     score++
     let newScore = document.querySelector('#score')
     newScore.innerText = `Score: ${score}` //adjust score accordingly
+    if (score >= highScore) {
+      highScore = score
+      let newHighScore = document.querySelector('#high-score')
+      newHighScore.innerText = `High Score: ${highScore}` //adjust high score if necessary
+    }
 
     generateFood()
     shouldSnakeGrow = true
