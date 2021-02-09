@@ -1,5 +1,7 @@
 body {
+  transition-duration: 0.6s;
   margin: 0;
+  background-color: white;
 }
 
 header {
@@ -36,7 +38,7 @@ h1 {
 }
 
 .snake {
-  background-color: #c4ffb2;
+  background-color: #7dce65;
 }
 
 #score,
@@ -44,31 +46,33 @@ h1 {
   display: inline-flexbox;
   font-size: 40px;
   font-family: 'Orbitron', sans-serif;
+  color: #04080f;
 }
 
-#play-button {
+.play-button {
   width: 200px;
   height: 80px;
   text-align: center;
   background-color: white;
-  color: #507dbc;
+  color: #7dce65;
   border-radius: 20px;
-  border: 3px solid #507dbc;
+  border: 3px solid #7dce65;
   font-size: 45px;
   margin: 15px 0px;
   outline: none;
   font-family: 'Orbitron', sans-serif;
+  transition-duration: 0.6s;
 }
 
-#play-button:hover {
+.play-button:hover {
   transition-duration: 0.3s;
-  background-color: #507dbc;
+  background-color: #7dce65;
   color: white;
   box-shadow: 5px 5px 15px black;
 }
 
 #s {
-  color: #c4ffb2;
+  color: #7dce65;
 }
 
 #a {
@@ -84,4 +88,36 @@ h1 {
 #game-over {
   font-size: 150px;
   font-family: 'Orbitron', sans-serif;
+}
+
+/*DARK MODE CSS*/
+
+#dark-mode {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.dark-body {
+  transition-duration: 0.6s;
+  background-color: #04080f;
+}
+
+.dark-header {
+  transition-duration: 0.6s;
+  color: white;
+}
+
+#dark-play-button {
+  transition-duration: 0.6s;
+  background-color: #04080f;
+  color: #7dce65;
+  border: 3px solid #7dce65;
+  outline: none;
+}
+
+#dark-play-button:hover {
+  transition-duration: 0.3s;
+  background-color: #7dce65;
+  color: #04080f;
 }

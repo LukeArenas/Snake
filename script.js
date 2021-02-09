@@ -1,8 +1,14 @@
 console.log('hello')
 //GLOBAL VARIABLES
-const playButton = document.querySelector('#play-button')
+const playButton = document.querySelector('.play-button')
+const darkMode = document.querySelector('#dark-mode')
 
 const main = document.querySelector('main')
+const body = document.querySelector('body')
+const h1 = document.querySelector('h1')
+const scoreText = document.querySelector('#score')
+const highScoreText = document.querySelector('#high-score')
+
 let gameDirection = 'right'
 let interval
 let score = 0
@@ -270,6 +276,28 @@ const checkForFood = (cellClass) => {
   }
 }
 
+//DARK MODE
+
+const goDark = () => {
+  if (body.className === '') {
+    body.setAttribute('class', 'dark-body')
+    h1.setAttribute('class', 'dark-header')
+    scoreText.style.color = 'white'
+    scoreText.style.transitionDuration = '0.6s'
+    highScoreText.style.color = 'white'
+    highScoreText.style.transitionDuration = '0.6s'
+    playButton.setAttribute('id', 'dark-play-button')
+  } else {
+    body.setAttribute('class', '')
+    h1.setAttribute('class', '')
+    scoreText.style.color = '#04080f'
+    scoreText.style.transitionDuration = '0.6s'
+    highScoreText.style.color = '#04080f'
+    highScoreText.style.transitionDuration = '0.6s'
+    playButton.setAttribute('id', '')
+  }
+}
+
 //EVENT LISTENERS
 
 const logKey = (event) => {
@@ -286,5 +314,6 @@ const logKey = (event) => {
 }
 
 playButton.addEventListener('click', beginGame)
+darkMode.addEventListener('click', goDark)
 
 document.addEventListener('keypress', logKey)
