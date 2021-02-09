@@ -92,8 +92,8 @@ const travelLeft = () => {
 // }
 
 const stepRight = () => {
-  moveBodyPieces()
-  head = { posY: head.posY + 1, posX: head.posX }
+  moveBodyPiecesRight()
+  head = { posY: head.posY, posX: head.posX + 1 }
   let oldHead = currentSnake.shift()
   currentSnake.unshift(head)
   let step = head.posY + head.posX
@@ -106,7 +106,7 @@ const stepRight = () => {
   nextCell.setAttribute('class', 'snake')
 }
 
-const moveBodyPieces = () => {
+const moveBodyPiecesDown = () => {
   for (let i = currentSnake.length - 1; i > 0; i--) {
     if (i === currentSnake.length - 1) {
       let cellNum = currentSnake[i].posX + currentSnake[i].posY
@@ -115,6 +115,45 @@ const moveBodyPieces = () => {
     }
     currentSnake[i].posX = currentSnake[i - 1].posX
     currentSnake[i].posY = currentSnake[i - 1].posY
+    //console.log(currentSnake[2].posX, currentSnake[2].posY)
+    let step = currentSnake[i].posX + currentSnake[i].posY
+    const nextDiv = document.querySelector(`#cell${step}`) //get div
+    const nextCellID = nextDiv.getAttribute('id') //get id
+    const nextID = parseInt(nextCellID.replace('cell', '')) //parseint id
+    const nextCell = document.querySelector(`#cell${nextID}`) //assign next cell
+    nextCell.setAttribute('class', 'snake')
+  }
+}
+
+const moveBodyPiecesRight = () => {
+  for (let i = currentSnake.length - 1; i > 0; i--) {
+    if (i === currentSnake.length - 1) {
+      let cellNum = currentSnake[i].posX + currentSnake[i].posY
+      const lastCell = document.querySelector(`#cell${cellNum}`)
+      lastCell.setAttribute('class', 'board')
+    }
+    currentSnake[i].posX = currentSnake[i - 1].posX
+    currentSnake[i].posY = currentSnake[i - 1].posY
+    //console.log(currentSnake[2].posX, currentSnake[2].posY)
+    let step = currentSnake[i].posX + currentSnake[i].posY
+    const nextDiv = document.querySelector(`#cell${step}`) //get div
+    const nextCellID = nextDiv.getAttribute('id') //get id
+    const nextID = parseInt(nextCellID.replace('cell', '')) //parseint id
+    const nextCell = document.querySelector(`#cell${nextID}`) //assign next cell
+    nextCell.setAttribute('class', 'snake')
+  }
+}
+
+const moveBodyPiecesUp = () => {
+  for (let i = currentSnake.length - 1; i > 0; i--) {
+    if (i === currentSnake.length - 1) {
+      let cellNum = currentSnake[i].posX + currentSnake[i].posY
+      const lastCell = document.querySelector(`#cell${cellNum}`)
+      lastCell.setAttribute('class', 'board')
+    }
+    currentSnake[i].posX = currentSnake[i - 1].posX
+    currentSnake[i].posY = currentSnake[i - 1].posY
+    // console.log(currentSnake[i].posX, currentSnake[i].posY)
     let step = currentSnake[i].posX + currentSnake[i].posY
     const nextDiv = document.querySelector(`#cell${step}`) //get div
     const nextCellID = nextDiv.getAttribute('id') //get id
@@ -126,12 +165,28 @@ const moveBodyPieces = () => {
 
 const stepDown = () => {
   //adjust currentSnake array
-  moveBodyPieces()
+  moveBodyPiecesDown()
   head = { posY: head.posY + 8, posX: head.posX }
   let oldHead = currentSnake.shift()
   currentSnake.unshift(head)
 
   //adjust cell class for visual purposes
+  let step = head.posY + head.posX
+  const nextDiv = document.querySelector(`#cell${step}`)
+  const nextCellID = nextDiv.getAttribute('id')
+  const nextCellClass = nextDiv.getAttribute('class')
+  checkForFood(nextCellClass)
+  const nextID = parseInt(nextCellID.replace('cell', ''))
+  const nextCell = document.querySelector(`#cell${nextID}`)
+  nextCell.setAttribute('class', 'snake')
+}
+
+const stepUp = () => {
+  moveBodyPiecesUp()
+  head = { posY: head.posY - 8, posX: head.posX }
+  let oldHead = currentSnake.shift()
+  currentSnake.unshift(head)
+
   let step = head.posY + head.posX
   const nextDiv = document.querySelector(`#cell${step}`)
   const nextCellID = nextDiv.getAttribute('id')
