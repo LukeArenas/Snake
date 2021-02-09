@@ -3,7 +3,7 @@ console.log('hello')
 const playButton = document.querySelector('#play-button')
 
 const main = document.querySelector('main')
-let gameDirection = 'Right'
+let gameDirection = 'right'
 let interval
 let score = 0
 let highScore = 0
@@ -16,10 +16,23 @@ let shouldSnakeGrow
 //CREATE BOARD ONLOAD FUNCTION
 const createBoard = () => {
   for (let i = 0; i < 64; i++) {
+    // if (
+    //   i === 8 ||
+    //   i === 17 ||
+    //   i === 26 ||
+    //   i === 35 ||
+    //   i === 44 ||
+    //   i === 53 ||
+    //   i === 62
+    // ) {
+    //   //skip these numbers to form 'borders'
+    // } else {
     let newCell = document.createElement('div')
     newCell.setAttribute('class', 'board')
     newCell.setAttribute('id', `cell${i}`)
+    newCell.innerText = i
     main.appendChild(newCell)
+    // }
   }
 }
 
@@ -46,21 +59,25 @@ const beginGame = () => {
 
 const travelDown = () => {
   clearInterval(interval) //clear interval so direction of movement doesn't 'stack'
+  gameDirection = 'down'
   interval = window.setInterval(stepDown, 1000)
 }
 
 const travelUp = () => {
   clearInterval(interval)
+  gameDirection = 'up'
   interval = window.setInterval(stepUp, 1000)
 }
 
 const travelRight = () => {
   clearInterval(interval)
+  gameDirection = 'right'
   interval = window.setInterval(stepRight, 1000)
 }
 
 const travelLeft = () => {
   clearInterval(interval)
+  gameDirection = 'left'
   interval = window.setInterval(stepLeft, 1000)
 }
 
@@ -95,15 +112,20 @@ const stepRight = () => {
   currentSnake.unshift(head)
 
   //adjust cell class for visual purposes
-  let step = head.posY + head.posX
-  const nextDiv = document.querySelector(`#cell${step}`)
-  const nextCellID = nextDiv.getAttribute('id')
-  const nextCellClass = nextDiv.getAttribute('class')
-  checkForFood(nextCellClass)
-  checkForDeath(nextCellClass)
-  const nextID = parseInt(nextCellID.replace('cell', ''))
-  const nextCell = document.querySelector(`#cell${nextID}`)
-  nextCell.setAttribute('class', 'snake')
+  try {
+    let step = head.posY + head.posX
+    const nextDiv = document.querySelector(`#cell${step}`)
+    const nextCellID = nextDiv.getAttribute('id')
+    const nextCellClass = nextDiv.getAttribute('class')
+    checkForFood(nextCellClass)
+    checkForDeath(nextCellClass)
+    const nextID = parseInt(nextCellID.replace('cell', ''))
+    checkForEdge(nextID)
+    const nextCell = document.querySelector(`#cell${nextID}`)
+    nextCell.setAttribute('class', 'snake')
+  } catch (error) {
+    alert('you have died')
+  }
 }
 
 const stepDown = () => {
@@ -114,15 +136,19 @@ const stepDown = () => {
   currentSnake.unshift(head)
 
   //adjust cell class for visual purposes
-  let step = head.posY + head.posX
-  const nextDiv = document.querySelector(`#cell${step}`)
-  const nextCellID = nextDiv.getAttribute('id')
-  const nextCellClass = nextDiv.getAttribute('class')
-  checkForFood(nextCellClass)
-  checkForDeath(nextCellClass)
-  const nextID = parseInt(nextCellID.replace('cell', ''))
-  const nextCell = document.querySelector(`#cell${nextID}`)
-  nextCell.setAttribute('class', 'snake')
+  try {
+    let step = head.posY + head.posX
+    const nextDiv = document.querySelector(`#cell${step}`)
+    const nextCellID = nextDiv.getAttribute('id')
+    const nextCellClass = nextDiv.getAttribute('class')
+    checkForFood(nextCellClass)
+    checkForDeath(nextCellClass)
+    const nextID = parseInt(nextCellID.replace('cell', ''))
+    const nextCell = document.querySelector(`#cell${nextID}`)
+    nextCell.setAttribute('class', 'snake')
+  } catch (error) {
+    alert('you have died')
+  }
 }
 
 const stepUp = () => {
@@ -133,15 +159,19 @@ const stepUp = () => {
   currentSnake.unshift(head)
 
   //adjust cell class for visual purposes
-  let step = head.posY + head.posX
-  const nextDiv = document.querySelector(`#cell${step}`)
-  const nextCellID = nextDiv.getAttribute('id')
-  const nextCellClass = nextDiv.getAttribute('class')
-  checkForFood(nextCellClass)
-  checkForDeath(nextCellClass)
-  const nextID = parseInt(nextCellID.replace('cell', ''))
-  const nextCell = document.querySelector(`#cell${nextID}`)
-  nextCell.setAttribute('class', 'snake')
+  try {
+    let step = head.posY + head.posX
+    const nextDiv = document.querySelector(`#cell${step}`)
+    const nextCellID = nextDiv.getAttribute('id')
+    const nextCellClass = nextDiv.getAttribute('class')
+    checkForFood(nextCellClass)
+    checkForDeath(nextCellClass)
+    const nextID = parseInt(nextCellID.replace('cell', ''))
+    const nextCell = document.querySelector(`#cell${nextID}`)
+    nextCell.setAttribute('class', 'snake')
+  } catch (error) {
+    alert('you have died')
+  }
 }
 
 const stepLeft = () => {
@@ -152,15 +182,20 @@ const stepLeft = () => {
   currentSnake.unshift(head)
 
   //adjust cell class for visual purposes
-  let step = head.posY + head.posX
-  const nextDiv = document.querySelector(`#cell${step}`)
-  const nextCellID = nextDiv.getAttribute('id')
-  const nextCellClass = nextDiv.getAttribute('class')
-  checkForFood(nextCellClass)
-  checkForDeath(nextCellClass)
-  const nextID = parseInt(nextCellID.replace('cell', ''))
-  const nextCell = document.querySelector(`#cell${nextID}`)
-  nextCell.setAttribute('class', 'snake')
+  try {
+    let step = head.posY + head.posX
+    const nextDiv = document.querySelector(`#cell${step}`)
+    const nextCellID = nextDiv.getAttribute('id')
+    const nextCellClass = nextDiv.getAttribute('class')
+    checkForFood(nextCellClass)
+    checkForDeath(nextCellClass)
+    const nextID = parseInt(nextCellID.replace('cell', ''))
+    checkForEdge(nextID)
+    const nextCell = document.querySelector(`#cell${nextID}`)
+    nextCell.setAttribute('class', 'snake')
+  } catch (error) {
+    alert('you have died')
+  }
 }
 
 //DIE FUNCTIONS
@@ -178,10 +213,36 @@ const checkForDeath = (nextCellClass) => {
   }
 }
 
+const checkForEdge = (nextID) => {
+  if (
+    gameDirection === 'right' &&
+    (nextID === 8 ||
+      nextID === 16 ||
+      nextID === 24 ||
+      nextID === 32 ||
+      nextID === 40 ||
+      nextID === 48 ||
+      nextID === 56)
+  ) {
+    alert('you have died')
+  } else if (
+    gameDirection === 'left' &&
+    (nextID === 7 ||
+      nextID === 15 ||
+      nextID === 23 ||
+      nextID === 31 ||
+      nextID === 39 ||
+      nextID === 47 ||
+      nextID === 55)
+  ) {
+    alert('you have died')
+  }
+}
+
 //FOOD FUNCTIONS
 
 const generateFood = () => {
-  const cellID = Math.floor(Math.random() * 60)
+  const cellID = Math.floor(Math.random() * 64)
   const foodCell = document.querySelector(`#cell${cellID}`)
   if (foodCell.getAttribute('class') === 'board') {
     foodCell.setAttribute('class', 'food')
