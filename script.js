@@ -16,23 +16,10 @@ let shouldSnakeGrow
 //CREATE BOARD ONLOAD FUNCTION
 const createBoard = () => {
   for (let i = 0; i < 64; i++) {
-    // if (
-    //   i === 8 ||
-    //   i === 17 ||
-    //   i === 26 ||
-    //   i === 35 ||
-    //   i === 44 ||
-    //   i === 53 ||
-    //   i === 62
-    // ) {
-    //   //skip these numbers to form 'borders'
-    // } else {
     let newCell = document.createElement('div')
     newCell.setAttribute('class', 'board')
     newCell.setAttribute('id', `cell${i}`)
-    newCell.innerText = i
     main.appendChild(newCell)
-    // }
   }
 }
 
@@ -46,6 +33,10 @@ const clearBoard = () => {
 //BEGIN GAME FUNCTION
 
 const beginGame = () => {
+  main.setAttribute('class', '')
+  main.innerHTML = ''
+  createBoard()
+  gameDirection = 'right'
   for (let i = 0; i < currentSnake.length; i++) {
     const firstPosition = document.querySelector(`#cell${currentSnake[i].posX}`)
     firstPosition.setAttribute('class', 'snake')
@@ -118,13 +109,13 @@ const stepRight = () => {
     const nextCellID = nextDiv.getAttribute('id')
     const nextCellClass = nextDiv.getAttribute('class')
     checkForFood(nextCellClass)
-    checkForDeath(nextCellClass)
+    checkForHittingBody(nextCellClass)
     const nextID = parseInt(nextCellID.replace('cell', ''))
     checkForEdge(nextID)
     const nextCell = document.querySelector(`#cell${nextID}`)
     nextCell.setAttribute('class', 'snake')
   } catch (error) {
-    alert('you have died')
+    resetGame()
   }
 }
 
@@ -142,12 +133,12 @@ const stepDown = () => {
     const nextCellID = nextDiv.getAttribute('id')
     const nextCellClass = nextDiv.getAttribute('class')
     checkForFood(nextCellClass)
-    checkForDeath(nextCellClass)
+    checkForHittingBody(nextCellClass)
     const nextID = parseInt(nextCellID.replace('cell', ''))
     const nextCell = document.querySelector(`#cell${nextID}`)
     nextCell.setAttribute('class', 'snake')
   } catch (error) {
-    alert('you have died')
+    resetGame()
   }
 }
 
@@ -165,12 +156,12 @@ const stepUp = () => {
     const nextCellID = nextDiv.getAttribute('id')
     const nextCellClass = nextDiv.getAttribute('class')
     checkForFood(nextCellClass)
-    checkForDeath(nextCellClass)
+    checkForHittingBody(nextCellClass)
     const nextID = parseInt(nextCellID.replace('cell', ''))
     const nextCell = document.querySelector(`#cell${nextID}`)
     nextCell.setAttribute('class', 'snake')
   } catch (error) {
-    alert('you have died')
+    resetGame()
   }
 }
 
@@ -188,28 +179,33 @@ const stepLeft = () => {
     const nextCellID = nextDiv.getAttribute('id')
     const nextCellClass = nextDiv.getAttribute('class')
     checkForFood(nextCellClass)
-    checkForDeath(nextCellClass)
+    checkForHittingBody(nextCellClass)
     const nextID = parseInt(nextCellID.replace('cell', ''))
     checkForEdge(nextID)
     const nextCell = document.querySelector(`#cell${nextID}`)
     nextCell.setAttribute('class', 'snake')
   } catch (error) {
-    alert('you have died')
+    resetGame()
   }
 }
 
 //DIE FUNCTIONS
 
-const checkForDeath = (nextCellClass) => {
+const resetGame = () => {
+  head = { posY: 0, posX: 2 }
+  currentSnake = [head, { posY: 0, posX: 1 }, { posY: 0, posX: 0 }]
+  score = 0
+  let resetScore = document.querySelector('#score')
+  resetScore.innerText = `Score: ${score}`
+  main.innerHTML = '<h3 id="game-over">Game Over!</h3>'
+  main.setAttribute('class', 'game-over-box')
+  clearInterval(interval)
+  setTimeout(clearBoard, 1)
+}
+
+const checkForHittingBody = (nextCellClass) => {
   if (nextCellClass === 'snake') {
-    head = { posY: 0, posX: 2 }
-    currentSnake = [head, { posY: 0, posX: 1 }, { posY: 0, posX: 0 }]
-    score = 0
-    let resetScore = document.querySelector('#score')
-    resetScore.innerText = `Score: ${score}`
-    alert('you have died')
-    clearInterval(interval)
-    setTimeout(clearBoard, 1)
+    resetGame()
   }
 }
 
@@ -224,7 +220,7 @@ const checkForEdge = (nextID) => {
       nextID === 48 ||
       nextID === 56)
   ) {
-    alert('you have died')
+    resetGame()
   } else if (
     gameDirection === 'left' &&
     (nextID === 7 ||
@@ -235,7 +231,7 @@ const checkForEdge = (nextID) => {
       nextID === 47 ||
       nextID === 55)
   ) {
-    alert('you have died')
+    resetGame()
   }
 }
 
