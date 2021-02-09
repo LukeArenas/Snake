@@ -12,8 +12,8 @@ let firstCellID = 1
 let lastCellID = 0
 let interval
 let score = 0
-let head = { posY: 0, posX: 1 }
-let currentSnake = [head, { posY: 0, posX: 0 }]
+let head = { posY: 0, posX: 2 }
+let currentSnake = [head, { posY: 0, posX: 1 }, { posY: 0, posX: 0 }]
 let shouldSnakeGrow
 
 //FUNCTIONS
@@ -88,11 +88,11 @@ const stepRight = () => {
   lastCell.setAttribute('class', 'board') //reset the class
   firstCellID++ //reassign currentCell for next iteration
   lastCellID++
-  console.log(currentSnake[1].posX, currentSnake[1].posY)
+  console.log(currentSnake[2].posX, currentSnake[2].posY)
 }
 
 const moveBodyPieces = () => {
-  for (let i = 1; i < currentSnake.length; i++) {
+  for (let i = currentSnake.length - 1; i > 0; i--) {
     currentSnake[i].posX = currentSnake[i - 1].posX
     currentSnake[i].posY = currentSnake[i - 1].posY
     // let step = currentSnake[i].posX + currentSnake[i].posY
@@ -109,7 +109,7 @@ const stepDown = () => {
   head = { posY: currentSnake[0].posY + 8, posX: currentSnake[0].posX }
   let oldHead = currentSnake.shift()
   currentSnake.unshift(head)
-  console.log(currentSnake[1].posX, currentSnake[1].posY)
+  console.log(currentSnake[2].posX, currentSnake[2].posY)
   // let step = currentSnake[0].posY + currentSnake[0].posX
   // const nextDiv = document.querySelector(`#cell${step}`)
   // const nextCellID = nextDiv.getAttribute('id')
