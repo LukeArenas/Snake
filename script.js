@@ -32,7 +32,6 @@ const clearBoard = () => {
 //BEGIN GAME FUNCTION
 
 const beginGame = () => {
-  clearBoard()
   for (let i = 0; i < currentSnake.length; i++) {
     const firstPosition = document.querySelector(`#cell${currentSnake[i].posX}`)
     firstPosition.setAttribute('class', 'snake')
@@ -171,7 +170,7 @@ const checkForDeath = (nextCellClass) => {
     currentSnake = [head, { posY: 0, posX: 1 }, { posY: 0, posX: 0 }]
     alert('you have died')
     clearInterval(interval)
-    clearBoard()
+    setTimeout(clearBoard, 1)
   }
 }
 
