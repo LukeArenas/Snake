@@ -15,15 +15,18 @@ let currentSnake = [head, { posY: 0, posX: 1 }, { posY: 0, posX: 0 }]
 let shouldSnakeGrow
 
 //FUNCTIONS
-// const createBoard = () => {
-//   for (let i = 0; i < 16; i++) {
-//     let newCell = document.createElement('div')
-//     newCell.setAttribute('class', 'board')
-//     newCell.setAttribute('id', `cell${i}`)
-//     newCell.innerText = 'hello'
-//     main.appendChild(newCell)
-//   }
-// }
+
+//CREATE BOARD ONLOAD FUNCTION
+const createBoard = () => {
+  for (let i = 0; i < 64; i++) {
+    let newCell = document.createElement('div')
+    newCell.setAttribute('class', 'board')
+    newCell.setAttribute('id', `cell${i}`)
+    main.appendChild(newCell)
+  }
+}
+
+//BEGIN GAME FUNCTION
 
 const beginGame = () => {
   for (let i = 0; i < currentSnake.length; i++) {
@@ -161,7 +164,8 @@ const stepLeft = () => {
 const checkForDeath = (nextCellClass) => {
   if (nextCellClass === 'snake') {
     alert('you have died')
-    interval = null
+    clearInterval(interval)
+    beginGame()
   }
 }
 
