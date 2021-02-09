@@ -87,9 +87,20 @@ const stepRight = () => {
 
 const stepDown = () => {
   head = { posY: head.posY + 8, posX: head.posX }
-  const oldSnakeHead = currentSnake.shift()
   currentSnake.unshift(head)
-  console.log(currentSnake[0].posY, currentSnake[0].posX)
+  let step = currentSnake[0].posY + currentSnake[0].posX
+  console.log(step)
+  const nextDiv = document.querySelector(`#cell${step}`)
+  const nextCellID = nextDiv.getAttribute('id')
+  const nextCellClass = nextDiv.getAttribute('class')
+  checkForFood(nextCellClass)
+  const nextID = parseInt(nextCellID.replace('cell', ''))
+  const nextCell = document.querySelector(`#cell${nextID}`)
+  nextCell.setAttribute('class', 'snake')
+
+  let currentCell = document.querySelector(`#cell${lastCellID}`)
+  currentCell.setAttribute('class', 'board')
+  lastCellID = lastCellID + 8
 }
 
 // const stepDown = () => {
