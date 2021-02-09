@@ -8,7 +8,7 @@ header {
 
 main {
   display: grid;
-  margin: 0 10vw 10vh 10vw;
+  margin: 0 20vw 10vh 20vw;
   grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
   grid-template-rows: 10vh 10vh 10vh 10vh 10vh 10vh 10vh 10vh;
 }
@@ -27,18 +27,14 @@ h1 {
 
 .board {
   background-color: #c8963e;
-
-  border: 1px solid black;
 }
 
 .food {
   background-color: #ed254e;
-  border: 1px solid black;
 }
 
 .snake {
   background-color: #c4ffb2;
-  border: 1px solid black;
 }
 
 #score,
@@ -51,18 +47,22 @@ h1 {
 #play-button {
   width: 200px;
   height: 80px;
-  background-color: #507dbc;
-  color: white;
+  text-align: center;
+  background-color: white;
+  color: #507dbc;
   border-radius: 20px;
-  border: none;
-  box-shadow: 5px 5px 15px black;
+  border: 3px solid #507dbc;
   font-size: 45px;
   margin: 15px 0px;
   outline: none;
+  font-family: 'Orbitron', sans-serif;
 }
 
 #play-button:hover {
-  box-shadow: 5px 5px 15px #ed254e;
+  transition-duration: 0.3s;
+  background-color: #507dbc;
+  color: white;
+  box-shadow: 5px 5px 15px black;
 }
 
 #s {
