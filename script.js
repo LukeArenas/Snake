@@ -33,7 +33,7 @@ const beginGame = () => {
     firstPosition.setAttribute('class', 'snake')
   }
 
-  // generateFood()
+  generateFood()
   interval = window.setInterval(stepRight, 1000)
 }
 
@@ -68,15 +68,7 @@ const travelLeft = () => {
 //     const nextCellID = nextDiv.getAttribute('id') //get id
 //     const nextCellClass = nextDiv.getAttribute('class') //get class
 //     checkForFood(nextCellClass) //check for food
-//     // if (shouldSnakeGrow) {
-//     //   currentSnake.push({
-//     //     posY: currentSnake[i].posY,
-//     //     posX: currentSnake[i].posX - 1
-//     //   })
 
-//     //   lastCellID--
-//     //   shouldSnakeGrow = false
-//     // }
 //     const nextID = parseInt(nextCellID.replace('cell', '')) //parseint id
 //     const nextCell = document.querySelector(`#cell${nextID}`) //assign next cell
 //     nextCell.setAttribute('class', 'snake')
@@ -272,15 +264,15 @@ const stepLeft = () => {
 
 //FOOD FUNCTIONS
 
-// const generateFood = () => {
-//   const cellID = Math.floor(Math.random() * 8)
-//   const foodCell = document.querySelector(`#cell${cellID}`)
-//   if (foodCell.getAttribute('class') === 'board') {
-//     foodCell.setAttribute('class', 'food')
-//   } else {
-//     generateFood()
-//   }
-// }
+const generateFood = () => {
+  const cellID = Math.floor(Math.random() * 60)
+  const foodCell = document.querySelector(`#cell${cellID}`)
+  if (foodCell.getAttribute('class') === 'board') {
+    foodCell.setAttribute('class', 'food')
+  } else {
+    generateFood()
+  }
+}
 
 const checkForFood = (cellClass) => {
   if (cellClass === 'food') {
@@ -290,6 +282,17 @@ const checkForFood = (cellClass) => {
 
     generateFood()
     shouldSnakeGrow = true
+  }
+  if (shouldSnakeGrow) {
+    currentSnake.push({
+      posY: currentSnake[currentSnake.length - 1].posY,
+      posX: currentSnake[currentSnake.length - 1].posX - 1
+    })
+    shouldSnakeGrow = false
+    console.log(
+      currentSnake[currentSnake.length - 1].posX,
+      currentSnake[currentSnake.length - 1].posY
+    )
   }
 }
 
