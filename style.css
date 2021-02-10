@@ -11,8 +11,8 @@ header {
 main {
   display: grid;
   margin: 0 20vw 10vh 20vw;
-  grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
-  grid-template-rows: 10vh 10vh 10vh 10vh 10vh 10vh 10vh 10vh;
+  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  grid-template-rows: 7vh 7vh 7vh 7vh 7vh 7vh 7vh 7vh 7vh 7vh;
   border: 3px solid #838e83;
 }
 
@@ -95,6 +95,7 @@ h1 {
   position: absolute;
   right: 10px;
   top: 10px;
+  outline: none;
 }
 
 .dark-body {

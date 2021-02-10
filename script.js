@@ -21,7 +21,7 @@ let shouldSnakeGrow
 
 //CREATE BOARD ONLOAD FUNCTION
 const createBoard = () => {
-  for (let i = 0; i < 64; i++) {
+  for (let i = 0; i < 100; i++) {
     let newCell = document.createElement('div')
     newCell.setAttribute('class', 'board')
     newCell.setAttribute('id', `cell${i}`)
@@ -30,7 +30,7 @@ const createBoard = () => {
 }
 
 const clearBoard = () => {
-  for (let i = 0; i < 64; i++) {
+  for (let i = 0; i < 100; i++) {
     let currentCell = document.querySelector(`#cell${i}`)
     currentCell.setAttribute('class', 'board')
   }
@@ -128,7 +128,7 @@ const stepRight = () => {
 const stepDown = () => {
   //adjust currentSnake array
   moveBodyPieces()
-  head = { posY: head.posY + 8, posX: head.posX }
+  head = { posY: head.posY + 10, posX: head.posX }
   let oldHead = currentSnake.shift()
   currentSnake.unshift(head)
 
@@ -151,7 +151,7 @@ const stepDown = () => {
 const stepUp = () => {
   //adjust currentSnake array
   moveBodyPieces()
-  head = { posY: head.posY - 8, posX: head.posX }
+  head = { posY: head.posY - 10, posX: head.posX }
   let oldHead = currentSnake.shift()
   currentSnake.unshift(head)
 
@@ -218,24 +218,28 @@ const checkForHittingBody = (nextCellClass) => {
 const checkForEdge = (nextID) => {
   if (
     gameDirection === 'right' &&
-    (nextID === 8 ||
-      nextID === 16 ||
-      nextID === 24 ||
-      nextID === 32 ||
+    (nextID === 10 ||
+      nextID === 20 ||
+      nextID === 30 ||
       nextID === 40 ||
-      nextID === 48 ||
-      nextID === 56)
+      nextID === 50 ||
+      nextID === 60 ||
+      nextID === 70 ||
+      nextID === 80 ||
+      nextID === 90)
   ) {
     resetGame()
   } else if (
     gameDirection === 'left' &&
-    (nextID === 7 ||
-      nextID === 15 ||
-      nextID === 23 ||
-      nextID === 31 ||
+    (nextID === 9 ||
+      nextID === 19 ||
+      nextID === 29 ||
       nextID === 39 ||
-      nextID === 47 ||
-      nextID === 55)
+      nextID === 49 ||
+      nextID === 59 ||
+      nextID === 69 ||
+      nextID === 79 ||
+      nextID === 89)
   ) {
     resetGame()
   }
@@ -244,7 +248,7 @@ const checkForEdge = (nextID) => {
 //FOOD FUNCTIONS
 
 const generateFood = () => {
-  const cellID = Math.floor(Math.random() * 64)
+  const cellID = Math.floor(Math.random() * 100)
   const foodCell = document.querySelector(`#cell${cellID}`)
   if (foodCell.getAttribute('class') === 'board') {
     foodCell.setAttribute('class', 'food')
