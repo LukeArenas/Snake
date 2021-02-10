@@ -51,7 +51,7 @@ h1 {
   width: 200px;
   height: 80px;
   text-align: center;
-  background-color: white;
+  background-color: transparent;
   color: #7dce65;
   border-radius: 20px;
   border: 3px solid #7dce65;
@@ -84,7 +84,7 @@ h1 {
   border: none;
 }
 
-#game-over {
+.game-over {
   font-size: 120px;
   font-family: 'Orbitron', sans-serif;
 }
@@ -110,9 +110,6 @@ h1 {
 
 #dark-play-button {
   transition-duration: 0.6s;
-  background-color: #04080f;
-  color: #7dce65;
-  border: 3px solid #7dce65;
   outline: none;
 }
 
@@ -120,4 +117,56 @@ h1 {
   transition-duration: 0.3s;
   background-color: #7dce65;
   color: #04080f;
+}
+
+/*NEXT LEVEL STYLING */
+
+.next-level-box {
+  border: none;
+  display: block;
+  text-align: center;
+}
+
+.next-level {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 50px;
+  color: #7dce65;
+}
+
+#next-level-button {
+  font-family: 'Orbitron', sans-serif;
+  width: 200px;
+  height: 80px;
+  background-color: transparent;
+  color: #ed254e;
+  border-radius: 20px;
+  border: 3px solid #ed254e;
+  font-size: 30px;
+  outline: none;
+}
+
+#next-level-button:hover {
+  transition-duration: 0.3s;
+  background-color: #ed254e;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 5px 5px 15px black;
+}
+
+#dark-next-level-button {
+  font-family: 'Orbitron', sans-serif;
+  width: 200px;
+  height: 80px;
+  background-color: transparent;
+  color: #ed254e;
+  border-radius: 20px;
+  border: 3px solid #ed254e;
+  font-size: 30px;
+  outline: none;
+}
+
+#dark-next-level-button:hover {
+  transition-duration: 0.3s;
+  color: #04080f;
+  background-color: #ed254e;
 }

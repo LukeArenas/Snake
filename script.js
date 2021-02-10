@@ -203,10 +203,10 @@ const resetGame = () => {
   score = 0
   let resetScore = document.querySelector('#score')
   resetScore.innerText = `Score: ${score}`
-  main.innerHTML = '<h3 id="game-over">Game Over!</h3>'
+  main.innerHTML = '<h3 class="game-over">Game Over!</h3>'
   main.setAttribute('class', 'game-over-box')
   clearInterval(interval)
-  setTimeout(clearBoard, 1)
+  // setTimeout(clearBoard, 1)
 }
 
 const checkForHittingBody = (nextCellClass) => {
@@ -267,7 +267,11 @@ const checkForFood = (cellClass) => {
       let newHighScore = document.querySelector('#high-score')
       newHighScore.innerText = `High Score: ${highScore}` //adjust high score if necessary
     }
-
+    if (score === 1) {
+      resetGame()
+      main.style.opacity = 0
+      setTimeout(nextLevel, 1)
+    }
     generateFood()
     shouldSnakeGrow = true
   }
@@ -291,6 +295,8 @@ const goDark = () => {
     highScoreText.style.color = 'white'
     highScoreText.style.transitionDuration = '0.6s'
     playButton.setAttribute('id', 'dark-play-button')
+    const nextLevelButton = document.querySelector('#next-level-button')
+    nextLevelButton.setAttribute('id', 'dark-next-level-button')
   } else {
     body.setAttribute('class', '')
     h1.setAttribute('class', '')
@@ -299,6 +305,8 @@ const goDark = () => {
     highScoreText.style.color = '#04080f'
     highScoreText.style.transitionDuration = '0.6s'
     playButton.setAttribute('id', '')
+    const nextLevelButton = document.querySelector('#next-level-button')
+    nextLevelButton.setAttribute('id', 'next-level-button')
   }
 }
 
@@ -321,3 +329,10 @@ playButton.addEventListener('click', beginGame)
 darkMode.addEventListener('click', goDark)
 
 document.addEventListener('keypress', logKey)
+
+const nextLevel = () => {
+  main.innerHTML =
+    "<h3 class='next-level'>Congrats!</h3><h3 class='next-level'>Ready for the next level?</h3><button id='next-level-button'>Let's Go!</button>"
+  main.style.opacity = 1
+  main.setAttribute('class', 'next-level-box')
+}
