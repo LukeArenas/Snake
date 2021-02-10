@@ -12,7 +12,7 @@ const highScoreText = document.querySelector('#high-score')
 let gameDirection = 'right'
 let interval
 let score = 0
-let highScore = 0
+let highScore = 5
 let head = { posY: 0, posX: 2 }
 let currentSnake = [head, { posY: 0, posX: 1 }, { posY: 0, posX: 0 }]
 let shouldSnakeGrow
@@ -21,7 +21,7 @@ let shouldSnakeGrow
 
 //CREATE BOARD ONLOAD FUNCTION
 const createBoard = () => {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 64; i++) {
     let newCell = document.createElement('div')
     newCell.setAttribute('class', 'board')
     newCell.setAttribute('id', `cell${i}`)
@@ -30,7 +30,7 @@ const createBoard = () => {
 }
 
 const clearBoard = () => {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 64; i++) {
     let currentCell = document.querySelector(`#cell${i}`)
     currentCell.setAttribute('class', 'board')
   }
@@ -49,7 +49,7 @@ const beginGame = () => {
   }
 
   generateFood()
-  interval = window.setInterval(stepRight, 600)
+  interval = window.setInterval(stepRight, 300)
 }
 
 //TRAVEL (INTERVAL) FUNCTIONS
@@ -57,25 +57,25 @@ const beginGame = () => {
 const travelDown = () => {
   clearInterval(interval) //clear interval so direction of movement doesn't 'stack'
   gameDirection = 'down'
-  interval = window.setInterval(stepDown, 600)
+  interval = window.setInterval(stepDown, 300)
 }
 
 const travelUp = () => {
   clearInterval(interval)
   gameDirection = 'up'
-  interval = window.setInterval(stepUp, 600)
+  interval = window.setInterval(stepUp, 300)
 }
 
 const travelRight = () => {
   clearInterval(interval)
   gameDirection = 'right'
-  interval = window.setInterval(stepRight, 600)
+  interval = window.setInterval(stepRight, 300)
 }
 
 const travelLeft = () => {
   clearInterval(interval)
   gameDirection = 'left'
-  interval = window.setInterval(stepLeft, 600)
+  interval = window.setInterval(stepLeft, 300)
 }
 
 // MOVE BODY PIECES FUNCTION
@@ -128,7 +128,7 @@ const stepRight = () => {
 const stepDown = () => {
   //adjust currentSnake array
   moveBodyPieces()
-  head = { posY: head.posY + 10, posX: head.posX }
+  head = { posY: head.posY + 8, posX: head.posX }
   let oldHead = currentSnake.shift()
   currentSnake.unshift(head)
 
@@ -151,7 +151,7 @@ const stepDown = () => {
 const stepUp = () => {
   //adjust currentSnake array
   moveBodyPieces()
-  head = { posY: head.posY - 10, posX: head.posX }
+  head = { posY: head.posY - 8, posX: head.posX }
   let oldHead = currentSnake.shift()
   currentSnake.unshift(head)
 
@@ -218,28 +218,25 @@ const checkForHittingBody = (nextCellClass) => {
 const checkForEdge = (nextID) => {
   if (
     gameDirection === 'right' &&
-    (nextID === 10 ||
-      nextID === 20 ||
-      nextID === 30 ||
+    (nextID === 8 ||
+      nextID === 16 ||
+      nextID === 24 ||
+      nextID === 32 ||
       nextID === 40 ||
-      nextID === 50 ||
-      nextID === 60 ||
-      nextID === 70 ||
-      nextID === 80 ||
-      nextID === 90)
+      nextID === 48 ||
+      nextID === 56)
   ) {
     resetGame()
   } else if (
     gameDirection === 'left' &&
-    (nextID === 9 ||
-      nextID === 19 ||
-      nextID === 29 ||
+    (nextID === 7 ||
+      nextID === 15 ||
+      nextID === 23 ||
+      nextID === 31 ||
       nextID === 39 ||
-      nextID === 49 ||
       nextID === 59 ||
-      nextID === 69 ||
-      nextID === 79 ||
-      nextID === 89)
+      nextID === 47 ||
+      nextID === 55)
   ) {
     resetGame()
   }
@@ -248,7 +245,7 @@ const checkForEdge = (nextID) => {
 //FOOD FUNCTIONS
 
 const generateFood = () => {
-  const cellID = Math.floor(Math.random() * 100)
+  const cellID = Math.floor(Math.random() * 64)
   const foodCell = document.querySelector(`#cell${cellID}`)
   if (foodCell.getAttribute('class') === 'board') {
     foodCell.setAttribute('class', 'food')
@@ -267,11 +264,6 @@ const checkForFood = (cellClass) => {
       let newHighScore = document.querySelector('#high-score')
       newHighScore.innerText = `High Score: ${highScore}` //adjust high score if necessary
     }
-    if (score === 5) {
-      resetGame()
-      main.style.opacity = 0
-      setTimeout(nextLevel, 1)
-    }
     generateFood()
     shouldSnakeGrow = true
   }
@@ -282,15 +274,6 @@ const checkForFood = (cellClass) => {
     })
     shouldSnakeGrow = false
   }
-}
-
-//NEXT LEVEL FUNCTION
-
-const nextLevel = () => {
-  main.innerHTML =
-    "<h3 class='next-level'>Congrats!</h3><h3 class='next-level'>Ready for the next level?</h3><a href='./secondround.html'><button id='next-level-button'>Let's Go!</button></a>"
-  main.style.opacity = 1
-  main.setAttribute('class', 'next-level-box')
 }
 
 //DARK MODE
