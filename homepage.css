@@ -1,0 +1,40 @@
+body {
+  background-image: url(https://miro.medium.com/max/1400/1*4635TGUJegt-JC-i94cGJw.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: none;
+}
+
+header {
+  background-color: black;
+  height: 15vh;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 150px;
+  margin-top: 0;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: white;
+  color: black;
+  height: 100px;
+  width: 200px;
+  font-size: 60px;
+  font-family: 'Orbitron', sans-serif;
+  border-radius: 20px;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+  border: 3px solid white;
+}
