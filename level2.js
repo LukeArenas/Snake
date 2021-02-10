@@ -325,3 +325,8 @@ playButton.addEventListener('click', beginGame)
 darkMode.addEventListener('click', goDark)
 
 document.addEventListener('keypress', logKey)
+
+//SOUND EFFECT LOGIC
+
+let sound = new Audio()
+sound.src = './8-bit-retro-success-victory.mp3'

@@ -270,6 +270,7 @@ const checkForFood = (cellClass) => {
     if (score === 5) {
       resetGame()
       main.style.opacity = 0
+      playButton.style.opacity = 0
       setTimeout(nextLevel, 1)
     }
     generateFood()
@@ -342,3 +343,8 @@ playButton.addEventListener('click', beginGame)
 darkMode.addEventListener('click', goDark)
 
 document.addEventListener('keypress', logKey)
+
+//SOUND EFFECT LOGIC
+
+let sound = new Audio()
+sound.src = './8-bit-retro-success-victory.mp3'
