@@ -304,6 +304,8 @@ const goDark = () => {
     highScoreText.style.color = 'white'
     highScoreText.style.transitionDuration = '0.6s'
     playButton.setAttribute('id', 'dark-play-button')
+    darkMode.innerText = 'Light'
+    darkMode.setAttribute('id', 'day-mode')
     const nextLevelButton = document.querySelector('#next-level-button')
     nextLevelButton.setAttribute('id', 'dark-next-level-button')
   } else {
@@ -314,6 +316,8 @@ const goDark = () => {
     highScoreText.style.color = '#04080f'
     highScoreText.style.transitionDuration = '0.6s'
     playButton.setAttribute('id', '')
+    darkMode.innerText = 'Dark'
+    darkMode.setAttribute('id', 'dark-mode')
     const nextLevelButton = document.querySelector('#next-level-button')
     nextLevelButton.setAttribute('id', 'next-level-button')
   }

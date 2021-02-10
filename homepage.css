@@ -31,6 +31,7 @@ button {
   font-size: 60px;
   font-family: 'Orbitron', sans-serif;
   border-radius: 20px;
+  outline: none;
 }
 
 button:hover {
