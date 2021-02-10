@@ -13,6 +13,7 @@ main {
   margin: 0 20vw 10vh 20vw;
   grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
   grid-template-rows: 10vh 10vh 10vh 10vh 10vh 10vh 10vh 10vh;
+  border: 3px solid #838e83;
 }
 
 h1 {
@@ -29,15 +30,16 @@ h1 {
 }
 
 .board {
-  background-color: #838e83;
 }
 
 .food {
   background-color: #ed254e;
+  border-radius: 50%;
 }
 
 .snake {
   background-color: #7dce65;
+  border-radius: 20px;
 }
 
 #score,
@@ -82,10 +84,11 @@ h1 {
   display: flex;
   justify-content: center;
   color: #ed254e;
+  border: none;
 }
 
 #game-over {
-  font-size: 150px;
+  font-size: 120px;
   font-family: 'Orbitron', sans-serif;
 }
 
