@@ -90,4 +90,4 @@ Additionally, a lot of the code used in the level2.js file is repeated from the 
 * [Educative.io](https://www.educative.io/blog/javascript-snake-game-tutorial)
 * Audio: [FreeSoundsLibrary.com](https://www.freesoundslibrary.com/)
 * GIF: [Miro.Medium.com](https://miro.medium.com/max/1400/1*4635TGUJegt-JC-i94cGJw.gif)
-* Strawberry: [PinClipArt.com](https://www.pinclipart.com/pindetail/bxhmob_grapes-free-on-dumielauxepices-net-transparent-pac-man/)
+* PNG: [PinClipArt.com](https://www.pinclipart.com/pindetail/bxhmob_grapes-free-on-dumielauxepices-net-transparent-pac-man/)
