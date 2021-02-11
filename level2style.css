@@ -30,8 +30,8 @@ h1 {
 }
 
 .food {
-  background-color: #ed254e;
-  border-radius: 50%;
+  background-image: url(./strawberry.png);
+  background-size: 100% 100%;
 }
 
 .snake {

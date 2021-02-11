@@ -51,3 +51,4 @@ A revamped version of the classic game Snake! This game allows a player to use a
 * [Educative.io] (https://www.educative.io/blog/javascript-snake-game-tutorial)
 * Audio: [FreeSoundsLibrary.com] (https://www.freesoundslibrary.com/)
 * GIF: [Miro.Medium.com] (https://miro.medium.com/max/1400/1*4635TGUJegt-JC-i94cGJw.gif)
+* Strawberry: [PinClipArt.com] (https://www.pinclipart.com/pindetail/bxhmob_grapes-free-on-dumielauxepices-net-transparent-pac-man/)
