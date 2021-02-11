@@ -1,6 +1,6 @@
 # Snake
 
-## Date: 2/5/2021
+## Date: 2/12/2021
 
 ### By: Luke Arenas
 
@@ -32,7 +32,7 @@ A revamped version of the classic game Snake! This game allows a player to use a
 ### ***Screenshots***
 
 #### Here are screenshots from the game:
-
+![index.html] (./screenshots/snake_index_html.PNG)
 
 
 ***
@@ -40,7 +40,7 @@ A revamped version of the classic game Snake! This game allows a player to use a
 ### ***Future Updates***
 
 - [ ] Additional levels once level 2 is passed
-- [ ] 
+- [ ] Change snake color when food eaten
 
 ***
 
