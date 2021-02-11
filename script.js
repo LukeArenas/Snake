@@ -26,14 +26,7 @@ const createBoard = () => {
     newCell.setAttribute('id', `cell${i}`)
     main.appendChild(newCell)
   }
-}
-
-const clearBoard = () => {
-  for (let i = 0; i < 100; i++) {
-    let currentCell = document.querySelector(`#cell${i}`)
-    currentCell.setAttribute('class', 'board')
-  }
-}
+} //creates 100 new divs with class: board and id's corresponding to their numeric order
 
 //BEGIN GAME FUNCTION
 
@@ -49,7 +42,7 @@ const beginGame = () => {
 
   generateFood()
   interval = window.setInterval(stepRight, 600)
-}
+} //sets the initial conditions for the beginning of a new game; positions initial snake in the top left corner
 
 //TRAVEL (INTERVAL) FUNCTIONS
 
@@ -57,7 +50,7 @@ const travelDown = () => {
   clearInterval(interval) //clear interval so direction of movement doesn't 'stack'
   gameDirection = 'down'
   interval = window.setInterval(stepDown, 600)
-}
+} //sets gameDirection (for later use in boundry logic) and sets interval for stepDown function to execute
 
 const travelUp = () => {
   clearInterval(interval)
@@ -85,17 +78,19 @@ const moveBodyPieces = () => {
       let cellNum = currentSnake[i].posX + currentSnake[i].posY
       const lastCell = document.querySelector(`#cell${cellNum}`)
       lastCell.setAttribute('class', 'board')
-    }
+    } //reassigns last cell class to board for CSS purposes
+
     currentSnake[i].posX = currentSnake[i - 1].posX
-    currentSnake[i].posY = currentSnake[i - 1].posY
-    let step = currentSnake[i].posX + currentSnake[i].posY
+    currentSnake[i].posY = currentSnake[i - 1].posY //reassigns the values in the array
+
+    let step = currentSnake[i].posX + currentSnake[i].posY //assigns next div snake class for CSS purposes
     const nextDiv = document.querySelector(`#cell${step}`) //get div
     const nextCellID = nextDiv.getAttribute('id') //get id
     const nextID = parseInt(nextCellID.replace('cell', '')) //parseint id
     const nextCell = document.querySelector(`#cell${nextID}`) //assign next cell
-    nextCell.setAttribute('class', 'snake')
+    nextCell.setAttribute('class', 'snake') //assign class
   }
-}
+} //moves each snake body piece, beginning with the tail, to the space of the piece immediately before it (using numeric id's).
 
 // STEP (MOVE HEAD) FUNCTIONS
 
@@ -112,16 +107,16 @@ const stepRight = () => {
     const nextDiv = document.querySelector(`#cell${step}`)
     const nextCellID = nextDiv.getAttribute('id')
     const nextCellClass = nextDiv.getAttribute('class')
-    checkForFood(nextCellClass)
-    checkForHittingBody(nextCellClass)
+    checkForFood(nextCellClass) //check if the next cell is food
+    checkForHittingBody(nextCellClass) //check if the next cell is a body piece
     const nextID = parseInt(nextCellID.replace('cell', ''))
-    checkForEdge(nextID)
+    checkForEdge(nextID) //check if the next cell is a left or right edge
     const nextCell = document.querySelector(`#cell${nextID}`)
     nextCell.setAttribute('class', 'snake')
   } catch (error) {
     resetGame()
-  }
-}
+  } //use try catch blocks so if boundry is met, game will end
+} //moves body pieces, then reassigns head, then reassigns snake head class for CSS
 
 const stepDown = () => {
   //adjust currentSnake array
@@ -204,13 +199,13 @@ const resetGame = () => {
   main.innerHTML = '<h3 class="game-over">Game Over!</h3>'
   main.setAttribute('class', 'game-over-box')
   clearInterval(interval)
-}
+} //reset all the conditions changed during the game except the high score
 
 const checkForHittingBody = (nextCellClass) => {
   if (nextCellClass === 'snake') {
     resetGame()
   }
-}
+} //if next cell is class snake, end the game
 
 const checkForEdge = (nextID) => {
   if (
@@ -240,19 +235,21 @@ const checkForEdge = (nextID) => {
   ) {
     resetGame()
   }
-}
+} //check for left and right edges using gameDirection and div id's
 
 //FOOD FUNCTIONS
 
 const generateFood = () => {
-  const cellID = Math.floor(Math.random() * 100)
-  const foodCell = document.querySelector(`#cell${cellID}`)
+  const cellID = Math.floor(Math.random() * 100) //generate a random number using Math.random
+  const foodCell = document.querySelector(`#cell${cellID}`) //assign the number to the id
+
+  //logic to make sure cell is not already assigned to snake body
   if (foodCell.getAttribute('class') === 'board') {
     foodCell.setAttribute('class', 'food')
   } else {
     generateFood()
   }
-}
+} //generates a food cell in a random position on the board
 
 const checkForFood = (cellClass) => {
   if (cellClass === 'food') {
@@ -264,15 +261,20 @@ const checkForFood = (cellClass) => {
       let newHighScore = document.querySelector('#high-score')
       newHighScore.innerText = `High Score: ${highScore}` //adjust high score if necessary
     }
+
+    //condition to determine when next level should begin
     if (score === 5) {
       resetGame()
-      main.style.opacity = 0
-      playButton.style.opacity = 0
-      setTimeout(nextLevel, 1)
+      main.style.opacity = 0 //changes opacity to 0 to hide game over message until nextLevel function is executed
+      playButton.style.opacity = 0 //also hides the play button from the user
+      setTimeout(nextLevel, 1) //setTimeout for nextLevel function so that it doesn't execute until the rest of the code
     }
-    generateFood()
+
+    generateFood() //generate new food item
     shouldSnakeGrow = true
   }
+
+  //logic to grow snake if food is found by pushing new piece to back of the array
   if (shouldSnakeGrow) {
     currentSnake.push({
       posY: currentSnake[currentSnake.length - 1].posY,
@@ -280,7 +282,7 @@ const checkForFood = (cellClass) => {
     })
     shouldSnakeGrow = false
   }
-}
+} //checks if the next cell is a food cell and if so, increments the score, grows the snake body, and generates another food
 
 //NEXT LEVEL FUNCTION
 
@@ -289,7 +291,7 @@ const nextLevel = () => {
     "<h3 class='next-level'>Congrats!</h3><h3 class='next-level'>Ready for the next level?</h3><a href='./secondround.html'><button id='next-level-button'>Let's Go!</button></a>"
   main.style.opacity = 1
   main.setAttribute('class', 'next-level-box')
-}
+} //resets the main HTML to display a message and button that directs you to the secondround.html page
 
 //DARK MODE
 
@@ -319,7 +321,7 @@ const goDark = () => {
     const nextLevelButton = document.querySelector('#next-level-button')
     nextLevelButton.setAttribute('id', 'next-level-button')
   }
-}
+} //sets various attributes using DOM manipulation depending on the state of the dark mode button
 
 //EVENT LISTENERS
 
@@ -334,7 +336,7 @@ const logKey = (event) => {
   } else if (keyPressed === 'a') {
     travelLeft()
   }
-}
+} //resolves key press into the four directions of travel
 
 playButton.addEventListener('click', beginGame)
 darkMode.addEventListener('click', goDark)
@@ -345,3 +347,4 @@ document.addEventListener('keypress', logKey)
 
 let sound = new Audio()
 sound.src = './8-bit-retro-success-victory.mp3'
+//creates new Audio object and assigns its source to the mp3
