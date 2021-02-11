@@ -1,4 +1,3 @@
-console.log('hello')
 //GLOBAL VARIABLES
 const playButton = document.querySelector('.play-button')
 const darkMode = document.querySelector('#dark-mode')
@@ -89,7 +88,6 @@ const moveBodyPieces = () => {
     }
     currentSnake[i].posX = currentSnake[i - 1].posX
     currentSnake[i].posY = currentSnake[i - 1].posY
-    console.log(currentSnake[2].posX, currentSnake[2].posY)
     let step = currentSnake[i].posX + currentSnake[i].posY
     const nextDiv = document.querySelector(`#cell${step}`) //get div
     const nextCellID = nextDiv.getAttribute('id') //get id
@@ -206,7 +204,6 @@ const resetGame = () => {
   main.innerHTML = '<h3 class="game-over">Game Over!</h3>'
   main.setAttribute('class', 'game-over-box')
   clearInterval(interval)
-  // setTimeout(clearBoard, 1)
 }
 
 const checkForHittingBody = (nextCellClass) => {
