@@ -98,6 +98,19 @@ const moveBodyPieces = () => {
   }
 }
 
+const snakeHeadChecks = () => {
+  let step = head.posY + head.posX
+  const nextDiv = document.querySelector(`#cell${step}`)
+  const nextCellID = nextDiv.getAttribute('id')
+  const nextCellClass = nextDiv.getAttribute('class')
+  checkForFood(nextCellClass) //check if the next cell is food
+  checkForHittingBody(nextCellClass) //check if the next cell is a body piece
+  const nextID = parseInt(nextCellID.replace('cell', ''))
+  checkForEdge(nextID) //check if the next cell is a left or right edge
+  const nextCell = document.querySelector(`#cell${nextID}`)
+  nextCell.setAttribute('class', 'snake')
+}
+
 // STEP (MOVE HEAD) FUNCTIONS
 
 const stepRight = () => {
@@ -109,16 +122,7 @@ const stepRight = () => {
 
   //adjust cell class for visual purposes
   try {
-    let step = head.posY + head.posX
-    const nextDiv = document.querySelector(`#cell${step}`)
-    const nextCellID = nextDiv.getAttribute('id')
-    const nextCellClass = nextDiv.getAttribute('class')
-    checkForFood(nextCellClass)
-    checkForHittingBody(nextCellClass)
-    const nextID = parseInt(nextCellID.replace('cell', ''))
-    checkForEdge(nextID)
-    const nextCell = document.querySelector(`#cell${nextID}`)
-    nextCell.setAttribute('class', 'snake')
+    snakeHeadChecks()
   } catch (error) {
     resetGame()
   }
@@ -133,15 +137,7 @@ const stepDown = () => {
 
   //adjust cell class for visual purposes
   try {
-    let step = head.posY + head.posX
-    const nextDiv = document.querySelector(`#cell${step}`)
-    const nextCellID = nextDiv.getAttribute('id')
-    const nextCellClass = nextDiv.getAttribute('class')
-    checkForFood(nextCellClass)
-    checkForHittingBody(nextCellClass)
-    const nextID = parseInt(nextCellID.replace('cell', ''))
-    const nextCell = document.querySelector(`#cell${nextID}`)
-    nextCell.setAttribute('class', 'snake')
+    snakeHeadChecks()
   } catch (error) {
     resetGame()
   }
@@ -156,15 +152,7 @@ const stepUp = () => {
 
   //adjust cell class for visual purposes
   try {
-    let step = head.posY + head.posX
-    const nextDiv = document.querySelector(`#cell${step}`)
-    const nextCellID = nextDiv.getAttribute('id')
-    const nextCellClass = nextDiv.getAttribute('class')
-    checkForFood(nextCellClass)
-    checkForHittingBody(nextCellClass)
-    const nextID = parseInt(nextCellID.replace('cell', ''))
-    const nextCell = document.querySelector(`#cell${nextID}`)
-    nextCell.setAttribute('class', 'snake')
+    snakeHeadChecks()
   } catch (error) {
     resetGame()
   }
@@ -179,16 +167,7 @@ const stepLeft = () => {
 
   //adjust cell class for visual purposes
   try {
-    let step = head.posY + head.posX
-    const nextDiv = document.querySelector(`#cell${step}`)
-    const nextCellID = nextDiv.getAttribute('id')
-    const nextCellClass = nextDiv.getAttribute('class')
-    checkForFood(nextCellClass)
-    checkForHittingBody(nextCellClass)
-    const nextID = parseInt(nextCellID.replace('cell', ''))
-    checkForEdge(nextID)
-    const nextCell = document.querySelector(`#cell${nextID}`)
-    nextCell.setAttribute('class', 'snake')
+    snakeHeadChecks()
   } catch (error) {
     resetGame()
   }
