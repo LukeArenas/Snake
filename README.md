@@ -38,12 +38,15 @@ A revamped version of the classic game Snake! This game allows a player to use a
 
 ### ***Future Updates***
 
-- [ ] 
+- [ ] Additional levels once level 2 is passed
 - [ ] 
 
 ***
 
 ### ***Credits***
 
-* [Kosbie.net](https://www.kosbie.net/cmu/fall-10/15-110/handouts/snake/snake.html#:~:text=In%20the%20game%20of%20Snake,as%20possible%20before%20that%20happens.)
+* [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-build-a-snake-game-in-javascript/)
 * [Medium.com](https://medium.com/writeabyte/snake-game-5aaeb80a261a)
+* [Educative.io] (https://www.educative.io/blog/javascript-snake-game-tutorial)
+* Audio: [FreeSoundsLibrary.com] (https://www.freesoundslibrary.com/)
+* GIF: [Miro.Medium.com] (https://miro.medium.com/max/1400/1*4635TGUJegt-JC-i94cGJw.gif)
