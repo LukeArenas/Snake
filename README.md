@@ -10,6 +10,8 @@
 
 A revamped version of the classic game Snake! This game allows a player to use arrow buttons to control a snake's direction of movement. The snake and the player's score grow as the player successfully guides the snake to the randomly generated food. If the player successfully completes the level, the stakes are raised as the snake begins to move faster and the game board shrinks. Hours of fun!
 
+### **Check out my project** [HERE](http://sulky-tent.surge.sh/)
+
 ***
 
 ### ***Technologies***
