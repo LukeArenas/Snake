@@ -32,8 +32,13 @@ A revamped version of the classic game Snake! This game allows a player to use a
 ### ***Screenshots***
 
 #### Here are screenshots from the game:
-![index.html] (./screenshots/snake_index_html.PNG)
-
+![index.html](screenshots/snake_index_html.PNG)
+![game.html light](screenshots/snake_game_html_light.PNG)
+![game.html dark](screenshots/snake_game_html_dark.PNG)
+![game.html gameplay](screenshots/snake_game_html_midgame.PNG)
+![next level prompt](screenshots/next_level_prompt.PNG)
+![second round](screenshots/snake_secondround_html.PNG)
+![game over](screenshots/game_over.PNG)
 
 ***
 
