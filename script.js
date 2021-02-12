@@ -246,6 +246,7 @@ const checkForFood = (cellClass) => {
       resetGame()
       main.style.opacity = 0 //changes opacity to 0 to hide game over message until nextLevel function is executed
       playButton.style.opacity = 0 //also hides the play button from the user
+      playButton.style.transitionDuration = '0s'
       setTimeout(nextLevel, 1) //setTimeout for nextLevel function so that it doesn't execute until the rest of the code
     }
 
